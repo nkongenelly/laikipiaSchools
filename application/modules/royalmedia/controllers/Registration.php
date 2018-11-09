@@ -45,9 +45,9 @@ class Registration extends MX_Controller
         if (is_array($json_object)) {
             if (count($json_object) > 0) {
                 foreach ($json_object as $row) {
-                    $response_time = $row->response_time;
+                    $response_time = date("Y-m-d H:i:s");
                     $dataItem = array(
-                        "time_modified" => date("Y-m-d H:i:s", intval($response_time)),
+                        "time_modified" => $response_time,
                         "category" => $row->category,
                         "item" => $row->item,
                         "quantity" => $row->quantity,
@@ -57,11 +57,11 @@ class Registration extends MX_Controller
                         "image" => $row->image,
                     );
 
-                    // $dataUser = array(
-                    //     "time_modified" => date("Y-m-d H:i:s", intval($response_time)),
-                    //     "name" => $row->category,
-                    //     "phone_number" => $row->phone,
-                    // );
+                    $dataUser = array(
+                        "time_modified" => $response_time,
+                        "name" => $row->category,
+                        "phone_number" => $row->phone,
+                    );
                     // var_dump($data); die();
                     if (($this->db->insert("users", $dataUser)) || ($this->db->insert("items", $dataItem))) {
                         $response["result"] = "true";
@@ -81,6 +81,5 @@ class Registration extends MX_Controller
         }
 
         echo json_encode($response);
-        echo json_encode($this->db->get('users'));
     }
 }
