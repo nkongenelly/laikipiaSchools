@@ -60,7 +60,7 @@ class Favouritelistings extends MX_Controller
         ));
         $result = curl_exec($ch);
         foreach ($result as $oneresult) {
-            $company_name = $oneresult . company_name;
+            $company_name = $oneresult["company_name"];
             dd($company_name);
         }
         curl_close($ch);

@@ -55,11 +55,16 @@ class Registration extends MX_Controller {
                     array_push($resultString,$row->busname);
                     var_dump($resultString);
                     $data = array(
-                        "business_name" => $row->busname,
-                        "category" => $row->cat,
-                        "phone_number" => $row->phone,
-                        "logo" => $row->logo,
-                        "location" => $row->locoation
+                        // "business_name" => $row->busname,
+                        // "category" => $row->cat,
+                        // "phone_number" => $row->phone,
+                        // "logo" => $row->logo,
+                        // "location" => $row->locoation
+                        "business_name" => "Queens Resturant",
+                        "category" => "Service",
+                        "phone_number" => "0737892340",
+                        "logo" => "https://cdn.ins-000.kms.osi.office.net/att/59f2786d190dd388acd91ec6a7c1a791a19be4f3beb089867303d71b6a98811b.jpg?sv=2015-12-11&sr=b&sig=0fQ30eS8SsngxAWYgJAo7K1d92viRotqoV8phGUdB1c%3D&st=2018-11-09T05:55:12Z&se=2292-08-24T06:55:12Z&sp=r",
+                        "location" => "Westlands, Nairobi, Kenya"
                     );
                     // var_dump($data); die();
                     if($this->db->insert("register_businesses", $data)){
