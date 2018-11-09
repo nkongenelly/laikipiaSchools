@@ -60,10 +60,11 @@ class Favouritelistings extends MX_Controller
         ));
         $result = curl_exec($ch);
         curl_close($ch);
-        foreach ($result as $oneresult) {
-            $company_name = $oneresult["company_name"];
-            var_dump($company_name);
-        }
+        // foreach ($result as $oneresult) {
+        //     $company_name = $oneresult["company_name"];
+        //     var_dump($company_name);
+        // }
+        dd($result);
     }
 
 
