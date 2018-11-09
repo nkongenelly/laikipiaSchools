@@ -64,7 +64,7 @@ class Favouritelistings extends MX_Controller
         //     $company_name = $oneresult["company_name"];
         //     var_dump($company_name);
         // }
-        dd($result);
+        var_dump($result);
     }
 
 
