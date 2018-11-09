@@ -43,15 +43,15 @@ class Merchant_location extends MX_Controller {
                 $bucket_name_ip = '';
 
                 $merchant_location_id = $res->merchant_location_id;
-                $district = preg_replace('/\s+/', '', $res->district);
-                $BS_Name = preg_replace('/\s+/', '', $res->BS_Name);
-                $Equipment = preg_replace('/\s+/', '', $res->Equipment);
-                $Client_type = preg_replace('/\s+/', '', $res->Client_type);
-                $First_Name = preg_replace('/\s+/', '', $res->First_Name);
-                $Second_name = preg_replace('/\s+/', '', $res->Second_name);
-                $Address = preg_replace('/\s+/', '', $res->Address);
-                $Equipment1 = preg_replace('/\s+/', '', $res->Equipment1);
-                $IP_Address = preg_replace('/\s+/', '', $res->IP_Address);
+                $district = str_replace(' ', '', $res->district);
+                $BS_Name = str_replace(' ', '', $res->BS_Name);
+                $Equipment = str_replace(' ', '', $res->Equipment);
+                $Client_type = str_replace(' ', '', $res->Client_type);
+                $First_Name = str_replace(' ', '', $res->First_Name);
+                $Second_name = str_replace(' ', '', $res->Second_name);
+                $Address = str_replace(' ', '', $res->Address);
+                $Equipment1 = str_replace(' ', '', $res->Equipment1);
+                $IP_Address = str_replace(' ', '', $res->IP_Address);
                 
                 $IP_Address = str_replace('(', '', $IP_Address);
                 $IP_Address = str_replace(')', '', $IP_Address);
@@ -94,11 +94,11 @@ class Merchant_location extends MX_Controller {
 
                 $data = array();
                 if(!empty($bucket_name)){
-                    $data['bucket_name'] = preg_replace('/\s+/', '', $bucket_name);
+                    $data['bucket_name'] = str_replace('  ', '', $bucket_name);
                 }
 
                 if(!empty($bucket_name_ip)){
-                    $data['bucket_name_ip'] = preg_replace('/\s+/', '', $bucket_name_ip);
+                    $data['bucket_name_ip'] = str_replace('  ', '', $bucket_name_ip);
                 }
                 
                 if(count($data) > 0){
@@ -107,6 +107,16 @@ class Merchant_location extends MX_Controller {
                 }
             }
         }
+    }
+
+    public function test_space_removal(){
+        $bucket_name = '  NAN_CHNR_CPE_BKT_FEMMIS_PB5';
+        $name1 = str_replace(' ', '', $bucket_name);
+        $name2 = preg_replace('/\s+/', '', $bucket_name);
+
+        var_dump($name1);
+        echo "<br/>";
+        var_dump($name2);
     }
 
     public function update_data_throughput_with_location(){
