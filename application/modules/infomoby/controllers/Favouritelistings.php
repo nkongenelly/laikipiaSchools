@@ -59,8 +59,12 @@ class Favouritelistings extends MX_Controller
             'Authorization:0c9e64ab66a28f5576e24c3b21614e88 '
         ));
         $result = curl_exec($ch);
+        foreach ($result as $oneresult) {
+            $company_name = $oneresult . company_name;
+            dd($company_name);
+        }
         curl_close($ch);
-        dd($result);
+
     }
 
 
