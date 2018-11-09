@@ -89,7 +89,7 @@ class Merchant_location extends MX_Controller {
                 }
 
                 if(!empty($IP_Address)){
-                    $bucket_name_ip .= " (".$IP_Address.")";
+                    $bucket_name_ip .= $bucket_name." (".$IP_Address.")";
                 }
 
                 $data = array();
