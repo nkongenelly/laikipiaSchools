@@ -54,10 +54,6 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 /**
- * Incidents routes
+ * Infomoby routes
 */
-$route['incidents'] = "incidents/index";
-$route['save-incident'] = "incidents/save_incident";
-$route['get-regions'] = "incidents/get_regions";
-$route['save-sso'] = "incidents/save_sso";
-$route['search-customer/(:any)'] = "incidents/get_mawingu_customer/$1";
+$route['infomoby/register-business'] = "infomoby/registration/register_business";
