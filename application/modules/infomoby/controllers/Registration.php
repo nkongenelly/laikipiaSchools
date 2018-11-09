@@ -36,18 +36,24 @@ class Registration extends MX_Controller {
     {
         $json_string = file_get_contents("php://input");
         $resultString = array();
-        array_push($resultString,$json_string);
+        
         $json_object = json_decode($json_string);
         $response = array();
         $response["start"]=$json_string;
-        // var_dump($resultString);
+        
         if(is_array($json_object))
         {
             if(count($json_object) > 0)
             {
                 foreach($json_object as $row)
                 {
-                    
+                    // $busname = $chat[0]["busname"];
+                    // $cat = $chat[0]["cat"];
+                    // $phone = $chat[0]["phone"];
+                     // $logo = $chat[0]["logo"];
+                    // $locoation = $chat[0]["locoation"];
+                    array_push($resultString,$row->busname);
+                    var_dump($resultString);
                     $data = array(
                         "business_name" => $row->busname,
                         "category" => $row->cat,
