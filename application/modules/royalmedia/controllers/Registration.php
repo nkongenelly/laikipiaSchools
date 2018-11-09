@@ -59,11 +59,11 @@ class Registration extends MX_Controller
 
                     $dataUser = array(
                         "time_modified" => $response_time,
-                        "name" => $row->category,
+                        "name" => $row->name,
                         "phone_number" => $row->phone,
                     );
                     // var_dump($data); die();
-                    if (($this->db->insert("users", $dataUser)) || ($this->db->insert("items", $dataItem))) {
+                    if (($this->db->insert("users", $dataUser)) && ($this->db->insert("items", $dataItem))) {
                         $response["result"] = "true";
                         $response["message"] = "Request saved successfully";
                     } else {
