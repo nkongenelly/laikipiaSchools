@@ -57,7 +57,7 @@ $route['translate_uri_dashes'] = false;
  * Infomoby routes
  */
 $route['infomoby/register-business'] = "infomoby/registration/register_business";
-$route['infomoby/getfavlistings'] = "infomoby/Favouritelistings/getFavoriteListings";
+$route['infomoby/getfavlistings'] = "infomoby/favouritelistings/getFavoriteListings";
 
 /**
  * Mawingu routes
