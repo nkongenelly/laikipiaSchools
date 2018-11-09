@@ -112,7 +112,7 @@ class Merchant_location extends MX_Controller {
     public function update_data_throughput_with_location(){
         $data_throughput = $this->db->get("data_throughput");
         $merchant_locations = $this->db->get("merchant_locations");
-        echo $data_throughput->num_rows();
+        echo $merchant_locations->num_rows();
         if($data_throughput->num_rows() > 0){
             foreach($data_throughput->result() as $res){
                 $data_throughput_id = $res->data_throughput_id;
