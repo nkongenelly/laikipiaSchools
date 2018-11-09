@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Incidents extends MX_Controller
+class Favouritelistings extends MX_Controller
 {
     /**
      * Constructor for this controller.
