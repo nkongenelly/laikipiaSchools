@@ -38,7 +38,16 @@ class Fetchdata extends MX_Controller
 
     public function services_search()
     {
-        $query = $this->db->get('items');
+        $category = 'Cereals';
+        $item = 'Hjj';
+        $units = 'kg';
+        $query = $this->db->select('*')
+            ->from('items')
+            ->where('category', $category)
+            ->where('item', $item)
+            ->where('units', $units);
+
+        //$query = $this->db->get('items');
         echo json_encode($query->result());
     }
 }
