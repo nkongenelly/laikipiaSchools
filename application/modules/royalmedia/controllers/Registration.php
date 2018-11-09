@@ -41,6 +41,9 @@ class Registration extends MX_Controller
         $json_string = file_get_contents("php://input");
         $json_object = json_decode($json_string);
         $response = array();
+        //fetch all users
+        $users = $this->db->get('users');
+        $temp_phone = 'temp_phone';
 
         if (is_array($json_object)) {
             if (count($json_object) > 0) {
@@ -62,13 +65,43 @@ class Registration extends MX_Controller
                         "name" => $row->name,
                         "phone_number" => $row->phone,
                     );
-                    // var_dump($data); die();
-                    if (($this->db->insert("users", $dataUser)) && ($this->db->insert("items", $dataItem))) {
+
+                    if ($this->db->insert("items", $dataItem)) {
                         $response["result"] = "true";
                         $response["message"] = "Request saved successfully";
                     } else {
                         $response["result"] = "false";
                         $response["message"] = "Unable to save item";
+                    }
+                    //check if there is anything in users table
+                    if (count($users) > 0) {
+                        foreach ($users as $user) {
+                            //check if the phone number already exists in db
+                            if ($user['phone'] == $row->phone) {
+                                // if yes
+                                $temp_phone = $row->phone;
+                            }
+                        }
+
+                        //if phone number in the db abd the incoming do not match
+                        if ($temp_phone == 'temp_phone') {
+                            if ($this->db->insert("users", $dataUser)) {
+                                $response["result"] = "true";
+                                $response["message"] = "Request saved successfully";
+                            } else {
+                                $response["result"] = "false";
+                                $response["message"] = "Unable to save item";
+                            }
+                        }
+                    } else {
+                        // var_dump($data); die();
+                        if ($this->db->insert("users", $dataUser)) {
+                            $response["result"] = "true";
+                            $response["message"] = "Request saved successfully";
+                        } else {
+                            $response["result"] = "false";
+                            $response["message"] = "Unable to save item";
+                        }
                     }
                 }
             } else {

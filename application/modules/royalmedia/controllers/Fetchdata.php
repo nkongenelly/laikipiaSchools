@@ -38,16 +38,41 @@ class Fetchdata extends MX_Controller
 
     public function services_search()
     {
-        $category = 'Cereals';
-        $item = 'Hjj';
-        $units = 'kg';
-        $query = $this->db->select('*')
-            ->from('items')
-            ->where('category', $category)
-            ->where('item', $item)
-            ->where('units', $units)->get();
+        $json_string = file_get_contents("php://input");
+        $json_object = json_decode($json_string);
+        $response = array();
 
-        //$query = $this->db->get('items');
-        echo json_encode($query->result());
+        //params to search with
+        $category = '';
+        $item = '';
+        $units = '';
+
+        if (is_array($json_object)) {
+            if (count($json_object) > 0) {
+                foreach ($json_object as $row) {
+                    $category = $row->category;
+                    $item = $row->item;
+                    $units = $row->units;
+                }
+            } else {
+                $response["result"] = "false";
+                $response["message"] = "No results present in request object";
+            }
+        } else {
+            $response["result"] = "false";
+            $response["message"] = "Error in request object";
+        }
+
+        if ($category != '' && $item != '' && $units != '') {
+            $items = $this->db->select('*')
+                ->from('items')
+                ->where('category', $category)
+                ->where('item', $item)
+                ->where('units', $units)->get();
+
+            //$items = $this->db->get('items');
+            echo json_encode($items->result());
+        }
+
     }
 }
