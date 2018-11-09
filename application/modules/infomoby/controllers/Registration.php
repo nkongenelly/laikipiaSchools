@@ -35,37 +35,28 @@ class Registration extends MX_Controller {
     public function register_business()
     {
         $json_string = file_get_contents("php://input");
+        $resultString = array();
+        array_push($resultString,$json_string);
         $json_object = json_decode($json_string);
         $response = array();
-
+        $response["start"]=$json_string;
+        // var_dump($resultString);
         if(is_array($json_object))
         {
             if(count($json_object) > 0)
             {
                 foreach($json_object as $row)
                 {
+                    
                     $data = array(
-                        "incident_date" => date("Y-m-d H:i:s", intval($row->incident_date)),
-                        "incident_station" => $row->incident_station,
-                        "incident_reporting_person_ssa" => $row->incident_reporting_person_ssa,
-                        "incident_reporting_person_co_no" => $row->incident_reporting_person_co_no,
-                        "incident_reporting_person_name" => $row->incident_reporting_person_name,
-                        "incident_reporting_person_phone" => $row->incident_reporting_person_phone,
-                        "incident_lat" => $location->lt,
-                        "incident_long" => $location->lg,
-                        "incident_person_injured" => $row->incident_person_injured,
-                        "incident_designation" => $row->incident_designation,
-                        "incident_permit_order_no" => $row->incident_permit_order_no,
-                        "incident_classification" => $row->incident_classification,
-                        "incident_other_classification" => $row->incident_other_classification,
-                        "incident_summary" => $row->incident_summary,
-                        "incident_results" => $row->incident_results,
-                        "incident_action" => $row->incident_action,
-                        "incident_image" => $row->incident_image,
-                        "incident_submitted_date" => date("Y-m-d H:i:s", intval($row->incident_submitted_date))
+                        "business_name" => $row->busname,
+                        "category" => $row->cat,
+                        "phone_number" => $row->phone,
+                        "logo" => $row->logo,
+                        "location" => $row->locoation
                     );
                     // var_dump($data); die();
-                    if($this->db->insert("incident", $data)){
+                    if($this->db->insert("register_businesses", $data)){
                         $response["result"] = "true";
                         $response["message"] = "Request saved successfully";
                     }
