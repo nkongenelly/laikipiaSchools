@@ -34,19 +34,19 @@ class Registration extends MX_Controller {
 
     public function register_business()
     {
-        $json_string = file_get_contents("php://input");
-        $resultString = array();
+        // $json_string = file_get_contents("php://input");
+        // $resultString = array();
         
-        $json_object = json_decode($json_string);
-        $response = array();
-        $response["start"]=$json_string;
+        // $json_object = json_decode($json_string);
+        // $response = array();
+        // $response["start"]=$json_string;
         
-        if(is_array($json_object))
-        {
-            if(count($json_object) > 0)
-            {
-                foreach($json_object as $row)
-                {
+        // if(is_array($json_object))
+        // {
+        //     if(count($json_object) > 0)
+        //     {
+        //         foreach($json_object as $row)
+        //         {
                     // $busname = $chat[0]["busname"];
                     // $cat = $chat[0]["cat"];
                     // $phone = $chat[0]["phone"];
@@ -76,17 +76,17 @@ class Registration extends MX_Controller {
                         $response["result"] = "false";
                         $response["message"] = "Unable to save item";
                     }
-                }
-            }
-            else{
-                $response["result"] = "false";
-                $response["message"] = "No results present in request object";
-            }
-        }
-        else{
-            $response["result"] = "false";
-            $response["message"] = "Error in request object";
-        }
+            //     }
+            // }
+        //     else{
+        //         $response["result"] = "false";
+        //         $response["message"] = "No results present in request object";
+        //     }
+        // }
+        // else{
+        //     $response["result"] = "false";
+        //     $response["message"] = "Error in request object";
+        // }
 
         echo json_encode($response);
     }
