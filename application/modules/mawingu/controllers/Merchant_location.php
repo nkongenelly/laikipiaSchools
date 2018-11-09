@@ -34,7 +34,8 @@ class Merchant_location extends MX_Controller {
 
     public function generate_bucket_names()
     {
-        $query = $this->db->get("merchant_locations");
+        $table = "merchant_locations";
+        $query = $this->db->get($table);
 
         if($query->num_rows() > 0){
             foreach($query->result() as $res){
@@ -102,7 +103,7 @@ class Merchant_location extends MX_Controller {
                 
                 if(count($data) > 0){
                     $this->db->where("merchant_location_id", $merchant_location_id);
-                    $this->db->update("merchant_location", $data);
+                    $this->db->update($table, $data);
                 }
             }
         }
