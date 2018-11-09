@@ -38,7 +38,7 @@ class Registration extends MX_Controller {
 
         $json_object = json_decode($json_string);
         $response = array();
-        var_dump($json_object);
+        // var_dump($json_string);
         if(is_array($json_object))
         {
             if(count($json_object) > 0)
