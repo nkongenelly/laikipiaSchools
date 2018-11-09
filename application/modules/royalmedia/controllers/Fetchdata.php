@@ -45,7 +45,7 @@ class Fetchdata extends MX_Controller
             ->from('items')
             ->where('category', $category)
             ->where('item', $item)
-            ->where('units', $units);
+            ->where('units', $units)->get();
 
         //$query = $this->db->get('items');
         echo json_encode($query->result());
