@@ -101,12 +101,27 @@ class Merchant_location extends MX_Controller {
                     $data['bucket_name_ip'] = str_replace(' ', '', $bucket_name_ip);
                 }
                 
+                if($data['bucket_name'] == '  NAN_CHNR_CPE_BKT_FEMMIS_PB5'){
+                    $this->db->where("merchant_location_id", $merchant_location_id);
+                    $this->db->update($table, $data);
+                }
+                
                 if(count($data) > 0){
                     $this->db->where("merchant_location_id", $merchant_location_id);
                     $this->db->update($table, $data);
                 }
             }
         }
+    }
+
+    public function test_space_removal(){
+        $bucket_name = '  NAN_CHNR_CPE_BKT_FEMMIS_PB5';
+        $name1 = str_replace(' ', '', $bucket_name);
+        $name2 = preg_replace('/\s+/', '', $bucket_name);
+
+        var_dump($name1);
+        echo "<br/>";
+        var_dump($name2);
     }
 
     public function update_data_throughput_with_location(){
