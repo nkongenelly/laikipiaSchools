@@ -35,7 +35,7 @@ class Registration extends MX_Controller {
     public function register_business()
     {
         $json_string = file_get_contents("php://input");
-        var_dump("json_string");
+
         $json_object = json_decode($json_string);
         $response = array();
 
@@ -45,6 +45,7 @@ class Registration extends MX_Controller {
             {
                 foreach($json_object as $row)
                 {
+                    var_dump($row->busname);
                     $data = array(
                         "business_name" => $row->busname,
                         "category" => $row->cat,
