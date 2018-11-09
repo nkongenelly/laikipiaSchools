@@ -94,11 +94,11 @@ class Merchant_location extends MX_Controller {
 
                 $data = array();
                 if(!empty($bucket_name)){
-                    $data['bucket_name'] = $bucket_name;
+                    $data['bucket_name'] = preg_replace('/\s+/', '', $bucket_name);
                 }
 
                 if(!empty($bucket_name_ip)){
-                    $data['bucket_name_ip'] = $bucket_name_ip;
+                    $data['bucket_name_ip'] = preg_replace('/\s+/', '', $bucket_name_ip);
                 }
                 
                 if(count($data) > 0){
@@ -112,12 +112,11 @@ class Merchant_location extends MX_Controller {
     public function update_data_throughput_with_location(){
         $data_throughput = $this->db->get("data_throughput");
         $merchant_locations = $this->db->get("merchant_locations");
-        echo $data_throughput->num_rows();
+        
         if($data_throughput->num_rows() > 0){
             foreach($data_throughput->result() as $res){
                 $data_throughput_id = $res->data_throughput_id;
                 $Bucket_Name = $res->Bucket_Name;
-
                 $data = array();
                 
                 //check if throughput exists in location
@@ -126,7 +125,7 @@ class Merchant_location extends MX_Controller {
                         $merchant_location_id = $row->merchant_location_id;
                         $Bucket_Name_location = $row->Bucket_Name;
                         $bucket_name_ip = $row->bucket_name_ip;
-                        
+                        echo $Bucket_Name." - ".$Bucket_Name_location."</br>";
                         if($Bucket_Name == $Bucket_Name_location){
                             $data['bucket'] = $Bucket_Name_location;
                             break;
