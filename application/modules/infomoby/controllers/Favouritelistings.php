@@ -60,7 +60,7 @@ class Favouritelistings extends MX_Controller
         ));
         $result = curl_exec($ch);
         curl_close($ch);
-        var_dump($result);
+        dd($result);
     }
 
 
