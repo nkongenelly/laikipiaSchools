@@ -39,6 +39,6 @@ class Fetchdata extends MX_Controller
     public function services_search()
     {
         $query = $this->db->get('items');
-        echo json_encode($query);
+        echo json_encode($query->result());
     }
 }
