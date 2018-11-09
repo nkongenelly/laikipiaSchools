@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -48,18 +48,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
-*/
+ */
 $route['default_controller'] = 'advertiser';
 $route['404_override'] = '';
-$route['translate_uri_dashes'] = FALSE;
+$route['translate_uri_dashes'] = false;
 
 /**
  * Infomoby routes
-*/
+ */
 $route['infomoby/register-business'] = "infomoby/registration/register_business";
+$route['infomoby/getfavlistings'] = "infomoby/Favouritelistings/getFavoriteListings";
 
 /**
  * Mawingu routes
-*/
+ */
 $route['mawingu/generate-bucket-names'] = "mawingu/merchant_location/generate_bucket_names";
 $route['mawingu/update-bucket'] = "mawingu/merchant_location/update_data_throughput_with_location";
