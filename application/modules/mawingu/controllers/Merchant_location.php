@@ -94,11 +94,11 @@ class Merchant_location extends MX_Controller {
 
                 $data = array();
                 if(!empty($bucket_name)){
-                    $data['bucket_name'] = $bucket_name;
+                    $data['bucket_name'] = preg_replace('/\s+/', '', $bucket_name);
                 }
 
                 if(!empty($bucket_name_ip)){
-                    $data['bucket_name_ip'] = $bucket_name_ip;
+                    $data['bucket_name_ip'] = preg_replace('/\s+/', '', $bucket_name_ip);
                 }
                 
                 if(count($data) > 0){
