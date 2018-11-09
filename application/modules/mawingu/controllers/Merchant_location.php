@@ -108,4 +108,47 @@ class Merchant_location extends MX_Controller {
             }
         }
     }
+
+    public function update_data_throughput_with_location(){
+        $data_throughput = $this->db->get("data_throughput");
+        $merchant_locations = $this->db->get("merchant_locations");
+
+        if($data_throughput->num_rows() > 0){
+            foreach($data_throughput->result() as $res){
+                $data_throughput_id = $res->data_throughput_id;
+                $Bucket_Name = $res->Bucket_Name;
+
+                $data = array();
+                
+                //check if throughput exists in location
+                if($merchant_locations->num_rows() > 0){
+                    foreach($merchant_locations->result() as $row){
+                        $merchant_location_id = $row->merchant_location_id;
+                        $Bucket_Name_location = $row->Bucket_Name;
+                        $bucket_name_ip = $row->bucket_name_ip;
+                        
+                        if($Bucket_Name == $Bucket_Name_location){
+                            $data['bucket'] = $Bucket_Name_location;
+                            break;
+                        }
+                        
+                        else if($Bucket_Name == $bucket_name_ip){
+                            $data['bucket'] = $bucket_name_ip;
+                            break;
+                        }
+                    }
+                }
+                
+                if(count($data) > 0){
+                    $this->db->where("merchant_location_id", $merchant_location_id);
+                    $this->db->update("merchant_locations", $data);
+                }
+            }
+        }
+    }
+
+    public function populate_heat_map(){
+        $data_throughput = $this->db->get("data_throughput");
+        $merchant_locations = $this->db->get("data_throughput");
+    }
 }

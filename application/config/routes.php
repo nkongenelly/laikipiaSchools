@@ -58,3 +58,4 @@ $route['translate_uri_dashes'] = FALSE;
 */
 $route['infomoby/register-business'] = "infomoby/registration/register_business";
 $route['mawingu/generate-bucket-names'] = "mawingu/merchant_location/generate_bucket_names";
+$route['mawingu/update-bucket'] = "mawingu/merchant_location/update_data_throughput_with_location";
