@@ -81,5 +81,6 @@ class Registration extends MX_Controller
         }
 
         echo json_encode($response);
+        echo $this->db->select('users');
     }
 }
