@@ -59,5 +59,5 @@ $route['translate_uri_dashes'] = false;
 $route['infomoby/register-business'] = "infomoby/registration/register_business";
 $route['infomoby/getfavlistings'] = "infomoby/favouritelistings/getFavoriteListings";
 // Royal Media Service routes
-$route['royalmedia/register-service'] = "royalmedia/registration/register_service";
+$route['royalmedia/register-service'] = "royalmedia/registration/register_services";
 $route['royalmedia/search'] = "royalmedia/fetchdata/services_search";
