@@ -34,7 +34,7 @@ class Merchant_location extends MX_Controller {
 
     public function generate_bucket_names()
     {
-        $query = $this->db->get("merchant_location");
+        $query = $this->db->get("merchant_locations");
 
         if($query->num_rows() > 0){
             foreach($query->results() as $res){
