@@ -38,14 +38,14 @@ class Registration extends MX_Controller {
 
         $json_object = json_decode($json_string);
         $response = array();
-
+        var_dump($json_object);
         if(is_array($json_object))
         {
             if(count($json_object) > 0)
             {
                 foreach($json_object as $row)
                 {
-                    var_dump($row->busname);
+                    
                     $data = array(
                         "business_name" => $row->busname,
                         "category" => $row->cat,
