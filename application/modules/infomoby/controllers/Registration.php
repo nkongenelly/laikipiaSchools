@@ -35,7 +35,7 @@ class Registration extends MX_Controller {
     public function register_business()
     {
         $json_string = file_get_contents("php://input");
-        dd($json_string);
+        dd("json_string");
         $json_object = json_decode($json_string);
         $response = array();
 
