@@ -54,14 +54,17 @@ class Favouritelistings extends MX_Controller
         $url = "https://infomoby-api.azurewebsites.net/index.php/ke/search_redesign/getfavouriteresults/user_id/-1.28333/36.81667/0/300";
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             'Authorization:0c9e64ab66a28f5576e24c3b21614e88 '
         ));
         $result = curl_exec($ch);
+        foreach ($result as $oneresult) {
+            $company_name = $oneresult . company_name;
+            dd($company_name);
+        }
         curl_close($ch);
-        var_dump($result);
+
     }
 
 
