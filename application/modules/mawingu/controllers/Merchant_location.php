@@ -94,16 +94,11 @@ class Merchant_location extends MX_Controller {
 
                 $data = array();
                 if(!empty($bucket_name)){
-                    $data['bucket_name'] = str_replace(' ', '', $bucket_name);
+                    $data['bucket_name'] = str_replace('  ', '', $bucket_name);
                 }
 
                 if(!empty($bucket_name_ip)){
-                    $data['bucket_name_ip'] = str_replace(' ', '', $bucket_name_ip);
-                }
-                
-                if($data['bucket_name'] == '  NAN_CHNR_CPE_BKT_FEMMIS_PB5'){
-                    $this->db->where("merchant_location_id", $merchant_location_id);
-                    $this->db->update($table, $data);
+                    $data['bucket_name_ip'] = str_replace('  ', '', $bucket_name_ip);
                 }
                 
                 if(count($data) > 0){
