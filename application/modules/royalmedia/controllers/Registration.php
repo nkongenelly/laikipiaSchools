@@ -77,7 +77,7 @@ class Registration extends MX_Controller
                     }
                     //check if there is anything in users table
                     if (count($users) > 0) {
-                        foreach ($users as $user) {
+                        foreach ($this->db->get('users') as $user) {
                             //check if the phone number already exists in db
                             if ($user['phone_number'] == $row->phone) {
                                 // if yes
@@ -105,7 +105,6 @@ class Registration extends MX_Controller
                             $response["message"] = "Unable to save item";
                         }
                     }
-                    break;
                 }
             } else {
                 $response["result"] = "false";
