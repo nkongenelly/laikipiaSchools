@@ -64,14 +64,14 @@ class Fetchdata extends MX_Controller
         }
 
         if ($category != '' && $item != '' && $units != '') {
-            // $items = $this->db->select('*')
-            //     ->from('items')
-            //     ->where('category', $category)
-            //     ->where('item', $item)
-            //     ->where('item', $units)->get();
 
-            $this->db->select('*')->from('items')->join('users', 'items.user_id', 'users.id')->get();
-            $items = $this->db->get_where('items', array('category' => $category, 'item' => $item, 'units' => $units));
+            $this->db->select('*');
+            $this->db->from('items');
+            $this->db->join('users', 'items.user_id = users.id');
+            $this->db->where('category', $category);
+            $this->db->where('item', $item);
+            $this->db->where('units', $units);
+            $items = $this->db->get();
 
             //$items = $this->db->get('items');
             echo json_encode($items->result());
