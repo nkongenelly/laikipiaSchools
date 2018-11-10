@@ -41,7 +41,7 @@ class Registration extends MX_Controller
         $json_string = file_get_contents("php://input");
         $json_object = json_decode($json_string);
         $response = array();
-        //fetch all users
+        //fetch all users from db table users 
         $users = $this->db->get('users')->result();
         $temp_phone = 'temp_phone';
 
@@ -106,6 +106,7 @@ class Registration extends MX_Controller
                             $response["message"] = "Unable to save item";
                         }
                     }
+                    break;
                 }
             } else {
                 $response["result"] = "false";
@@ -115,9 +116,9 @@ class Registration extends MX_Controller
             $response["result"] = "false";
             $response["message"] = "Error in request object";
         }
-        //echo json_encode($response);
+        echo json_encode($response);
         // foreach()
         //$sam = $this->db->get('users')->result();
-        var_dump(count($users));
+        // var_dump(count($users));
     }
 }
