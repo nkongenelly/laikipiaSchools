@@ -81,8 +81,10 @@ class Fetchdata extends MX_Controller
 
             //$items = $this->db->get('items');
             echo json_encode($items->result());
+        }else{
+            echo json_encode(is_array($json_object));
         }
-        echo json_encode(is_array($json_object));
+        
 
     }
 }
