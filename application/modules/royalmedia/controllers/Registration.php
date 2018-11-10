@@ -42,7 +42,7 @@ class Registration extends MX_Controller
         $json_object = json_decode($json_string);
         $response = array();
         //fetch all users
-        $users = $this->db->get('users');
+        $users = $this->db->get('users')->result();
         $temp_phone = 'temp_phone';
 
         if (is_array($json_object)) {
@@ -115,7 +115,7 @@ class Registration extends MX_Controller
             $response["result"] = "false";
             $response["message"] = "Error in request object";
         }
-
+        echo json_encode($this->db->get('items')->result());
         echo json_encode($response);
     }
 }
