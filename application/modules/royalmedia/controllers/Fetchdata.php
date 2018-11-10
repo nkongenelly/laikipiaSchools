@@ -63,9 +63,6 @@ class Fetchdata extends MX_Controller
             $response["message"] = "Error in request object";
         }
 
-        $category = 'Cereals';
-        $item = "Hotel ";
-        $units = 'grams';
         if ($category != '' && $item != '' && $units != '') {
 
             $this->db->select('*');
