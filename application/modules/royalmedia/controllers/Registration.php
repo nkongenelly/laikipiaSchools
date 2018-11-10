@@ -62,10 +62,10 @@ class Registration extends MX_Controller
                     );
 
                     $dataUser = array(
-                        "time_modified" => $response_time,
                         "name" => $row->name,
                         "phone_number" => $row->phone,
                         "user_id" => $userId,
+                        "time_modified" => $response_time,
                     );
 
                     if ($this->db->insert("items", $dataItem)) {
@@ -105,6 +105,7 @@ class Registration extends MX_Controller
                             $response["message"] = "Unable to save item";
                         }
                     }
+                    break;
                 }
             } else {
                 $response["result"] = "false";
