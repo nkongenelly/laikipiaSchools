@@ -77,11 +77,12 @@ class Registration extends MX_Controller
                     }
                     //check if there is anything in users table
                     if (count($users) > 0) {
-                        foreach (json_encode($users) as $user) {
+                        foreach ($users as $user) {
                             //check if the phone number already exists in db
-                            if ($user['phone_number'] == $row->phone) {
+                            if ($user->phone_number == $row->phone) {
                                 // if yes
                                 $temp_phone = $row->phone;
+                                break;
                             }
                         }
 
@@ -114,11 +115,9 @@ class Registration extends MX_Controller
             $response["result"] = "false";
             $response["message"] = "Error in request object";
         }
-        // echo json_encode($response);
+        //echo json_encode($response);
         // foreach()
-        $sam = $this->db->get('users')->result();
-
-        //var_dump($sam[0]["id"]);
-        var_dump($sam[0]->id);
+        //$sam = $this->db->get('users')->result();
+        var_dump(count($users));
     }
 }
