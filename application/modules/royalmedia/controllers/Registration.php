@@ -118,6 +118,7 @@ class Registration extends MX_Controller
         // foreach()
         $sam = $this->db->get('users')->result();
 
-        var_dump($sam[0]);
+        var_dump($sam[0]["id"]);
+        var_dump($sam[0]->id);
     }
 }
