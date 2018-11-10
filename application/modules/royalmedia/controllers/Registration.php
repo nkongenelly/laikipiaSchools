@@ -114,7 +114,8 @@ class Registration extends MX_Controller
             $response["result"] = "false";
             $response["message"] = "Error in request object";
         }
-        echo json_encode($response);
+        // echo json_encode($response);
+        // foreach()
         echo json_encode($users);
     }
 }
