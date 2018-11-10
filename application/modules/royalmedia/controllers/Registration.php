@@ -41,7 +41,7 @@ class Registration extends MX_Controller
         $json_string = file_get_contents("php://input");
         $json_object = json_decode($json_string);
         $response = array();
-        //fetch all users from db table users 
+        //fetch all users from db table users
         $users = $this->db->get('users')->result();
         $temp_phone = 'temp_phone';
 
@@ -120,5 +120,89 @@ class Registration extends MX_Controller
         // foreach()
         //$sam = $this->db->get('users')->result();
         // var_dump(count($users));
+    }
+
+    public function services_search()
+    {
+        $json_string = file_get_contents("php://input");
+        $json_object = json_decode($json_string);
+        $response = array();
+
+        //params to search with
+        $category = '';
+        $item = '';
+        $units = '';
+
+        if (is_array($json_object)) {
+            if (count($json_object) > 0) {
+                foreach ($json_object as $row) {
+                    $category = $row->category;
+                    $item = $row->item;
+                    $units = $row->units;
+                }
+            } else {
+                $response["result"] = "false";
+                $response["message"] = "No results present in request object";
+            }
+        } else {
+            $response["result"] = "false";
+            $response["message"] = "Error in request object";
+        }
+
+        // $category = "Cereals";
+        // $item = "Bean";
+        // $units = "kg";
+        if ($category != '' && $item != '' && $units != '') {
+
+            $this->db->select('*');
+            $this->db->from('items');
+            $this->db->join('users', 'items.user_id = users.user_id');
+            $this->db->where('category', $category);
+            $this->db->where('item', $item);
+            $this->db->where('units', $units);
+            // $this->db->where('category', 'Cereals');
+            // $this->db->where('item', 'Hotel');
+            // $this->db->where('units', 'grams');
+            $items = $this->db->get();
+
+            //$items = $this->db->get('items');
+            echo json_encode($items->result());
+        }
+
+    }
+    public function items_search()
+    {
+        $json_string = file_get_contents("php://input");
+        $json_object = json_decode($json_string);
+        $response = array();
+
+        //params to search with
+        $category = '';
+
+        if (is_array($json_object)) {
+            if (count($json_object) > 0) {
+                foreach ($json_object as $row) {
+                    $category = $row->category;
+                }
+            } else {
+                $response["result"] = "false";
+                $response["message"] = "No results present in request object";
+            }
+        } else {
+            $response["result"] = "false";
+            $response["message"] = "Error in request object";
+        }
+
+        // $category = "Cereals";
+        // $item = "Bean";
+        // $units = "kg";
+        if ($category != '') {
+            $this->db->select('item');
+            $this->db->from('items');
+            $this->db->where('category', $category);
+            $items = $this->db->get();
+            //$items = $this->db->get('items');
+            echo json_encode($items->result());
+        }
     }
 }
