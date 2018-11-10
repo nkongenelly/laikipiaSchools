@@ -118,6 +118,6 @@ class Registration extends MX_Controller
         // foreach()
         $sam = $users;
 
-        var_dump($sam);
+        dd($sam);
     }
 }
