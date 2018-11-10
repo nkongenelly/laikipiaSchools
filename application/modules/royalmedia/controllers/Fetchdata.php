@@ -68,9 +68,9 @@ class Fetchdata extends MX_Controller
             $this->db->select('*');
             $this->db->from('items');
             $this->db->join('users', 'items.user_id = users.user_id');
-            // $this->db->where('category', $category);
-            // $this->db->where('item', $item);
-            // $this->db->where('units', $units);
+            $this->db->where('category', $category);
+            $this->db->where('item', $item);
+            $this->db->where('units', $units);
             // $this->db->where('category', 'Cereals');
             // $this->db->where('item', 'Hotel');
             // $this->db->where('units', 'grams');
