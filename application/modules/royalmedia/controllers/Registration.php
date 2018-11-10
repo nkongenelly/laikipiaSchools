@@ -64,6 +64,7 @@ class Registration extends MX_Controller
                         "time_modified" => $response_time,
                         "name" => $row->name,
                         "phone_number" => $row->phone,
+                        "user_id" => $row->userId,
                     );
 
                     if ($this->db->insert("items", $dataItem)) {
