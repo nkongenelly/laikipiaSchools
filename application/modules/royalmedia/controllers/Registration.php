@@ -117,6 +117,6 @@ class Registration extends MX_Controller
         // echo json_encode($response);
         // foreach()
         $sam = $users;
-        echo $sam['id'];
+        echo $sam[0]['id'];
     }
 }
