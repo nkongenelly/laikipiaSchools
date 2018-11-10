@@ -79,9 +79,9 @@ class Registration extends MX_Controller
                     if (count($users) > 0) {
                         foreach ($users as $user) {
                             //check if the phone number already exists in db
-                            if ($user->phone_number == $row->phone) {
+                            if ($user->user_id == $userId) {
                                 // if yes
-                                $temp_phone = $row->phone;
+                                $temp_phone = "anything";
                                 break;
                             }
                         }
