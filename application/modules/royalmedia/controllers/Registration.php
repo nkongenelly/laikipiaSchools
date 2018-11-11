@@ -106,6 +106,7 @@ class Registration extends MX_Controller
                         $response["result"] = "false";
                         $response["message"] = "Unable to save item";
                     }
+                    break;
                 }
             } else {
                 $response["result"] = "false";
