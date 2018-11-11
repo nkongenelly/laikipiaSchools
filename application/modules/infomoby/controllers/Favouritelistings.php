@@ -69,9 +69,9 @@ class Favouritelistings extends MX_Controller
         $companies = $json_object->companies;
         for ($i = 0; $i < count($companies); $i++) {
             array_push($company, $companies[0]->company_name);
-            var_dump($company);
+
         }
-        
+        var_dump($company);
         // $url2 = "https://prod-30.westeurope.logic.azure.com:443/workflows/39845fe9b8c740a196b2d0252c065ce9/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=_wN7n4v_Kw5P76DdXWbuWIkjYUpBSH3EHtT7ajmhLUc";
             
         //         $data = array("message" => $company);                                                                    
