@@ -89,16 +89,18 @@ class Merchant_location extends MX_Controller {
                 }
 
                 if(!empty($IP_Address)){
-                    $bucket_name_ip .= $bucket_name." (".$IP_Address.")";
+                    $bucket_name_ip .= $bucket_name."(".$IP_Address.")";
                 }
 
                 $data = array();
                 if(!empty($bucket_name)){
                     $data['bucket_name'] = str_replace('  ', '', $bucket_name);
+                    $data['bucket_name'] = str_replace(' ', '', $bucket_name);
                 }
-
+                
                 if(!empty($bucket_name_ip)){
                     $data['bucket_name_ip'] = str_replace('  ', '', $bucket_name_ip);
+                    $data['bucket_name_ip'] = str_replace(' ', '', $bucket_name_ip);
                 }
                 
                 if(count($data) > 0){
@@ -109,14 +111,25 @@ class Merchant_location extends MX_Controller {
         }
     }
 
-    public function test_space_removal(){
-        $bucket_name = '  NAN_CHNR_CPE_BKT_FEMMIS_PB5';
-        $name1 = str_replace(' ', '', $bucket_name);
-        $name2 = preg_replace('/\s+/', '', $bucket_name);
+    public function remove_throughput_spaces()
+    {
+        $table = "data_throughput";
+        $query = $this->db->get($table);
 
-        var_dump($name1);
-        echo "<br/>";
-        var_dump($name2);
+        if($query->num_rows() > 0){
+            foreach($query->result() as $res){
+                $bucket_name = '';
+                $bucket_name_ip = '';
+
+                $data_throughput_id = $res->data_throughput_id;
+                $Bucket_Name = str_replace(' ', '', $res->Bucket_Name);
+                $Bucket_Name = str_replace('  ', '', $Bucket_Name);
+                $Bucket_Name = str_replace(' ', '', $Bucket_Name);
+                $data['bucket_name'] = $Bucket_Name;
+                $this->db->where("data_throughput_id", $data_throughput_id);
+                $this->db->update($table, $data);
+            }
+        }
     }
 
     public function update_data_throughput_with_location(){
@@ -128,6 +141,7 @@ class Merchant_location extends MX_Controller {
                 $data_throughput_id = $res->data_throughput_id;
                 $Bucket_Name = $res->Bucket_Name;
                 $data = array();
+                $bucket = '';
                 
                 //check if throughput exists in location
                 if($merchant_locations->num_rows() > 0){
@@ -135,20 +149,21 @@ class Merchant_location extends MX_Controller {
                         $merchant_location_id = $row->merchant_location_id;
                         $Bucket_Name_location = $row->Bucket_Name;
                         $bucket_name_ip = $row->bucket_name_ip;
-                        echo $Bucket_Name." - ".$Bucket_Name_location."</br>";
+                        // echo $Bucket_Name." - ".$Bucket_Name_location."</br>";
                         if($Bucket_Name == $Bucket_Name_location){
-                            $data['bucket'] = $Bucket_Name_location;
+                            $bucket = $Bucket_Name_location;
                             break;
                         }
                         
                         else if($Bucket_Name == $bucket_name_ip){
-                            $data['bucket'] = $bucket_name_ip;
+                            $bucket = $bucket_name_ip;
                             break;
                         }
                     }
                 }
-
-                if(count($data) > 0){
+                echo $Bucket_Name." - ".$bucket."<br/>";
+                if(!empty($bucket)){
+                    $data['bucket'] = $bucket;
                     $this->db->where("merchant_location_id", $merchant_location_id);
                     $this->db->update("merchant_locations", $data);
                 }
@@ -157,7 +172,9 @@ class Merchant_location extends MX_Controller {
     }
 
     public function populate_heat_map(){
-        $data_throughput = $this->db->get("data_throughput");
-        $merchant_locations = $this->db->get("data_throughput");
+        $this->db->where("data_throughput.Bucket_Name = merchant_locations.bucket");
+        $data_throughput = $this->db->get("data_throughput, merchant_locations");
+        $data['merchants'] = json_encode($data_throughput->result());
+        $this->load->view("heatmap/map", $data);
     }
 }

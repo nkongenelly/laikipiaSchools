@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Fetchdata extends MX_Controller
+class Allitems extends MX_Controller
 {
     /**
      * Constructor for this controller.
@@ -36,7 +36,7 @@ class Fetchdata extends MX_Controller
         }
     }
 
-    public function services_search()
+    public function items_search()
     {
         $json_string = file_get_contents("php://input");
         $json_object = json_decode($json_string);
@@ -44,15 +44,11 @@ class Fetchdata extends MX_Controller
 
         //params to search with
         $category = '';
-        $item = '';
-        $units = '';
 
         if (is_array($json_object)) {
             if (count($json_object) > 0) {
                 foreach ($json_object as $row) {
                     $category = $row->category;
-                    $item = $row->item;
-                    $units = $row->units;
                 }
             } else {
                 $response["result"] = "false";
@@ -66,23 +62,14 @@ class Fetchdata extends MX_Controller
         // $category = "Cereals";
         // $item = "Bean";
         // $units = "kg";
-        if ($category != '' && $item != '' && $units != '') {
-
-            $this->db->select('*');
+        if ($category != '') {
+            $this->db->select('item');
             $this->db->from('items');
-            $this->db->join('users', 'items.user_id = users.user_id');
             $this->db->where('category', $category);
-            $this->db->where('item', $item);
-            $this->db->where('units', $units);
-            // $this->db->where('category', 'Cereals');
-            // $this->db->where('item', 'Hotel');
-            // $this->db->where('units', 'grams');
             $items = $this->db->get();
-
             //$items = $this->db->get('items');
             echo json_encode($items->result());
         }
-        
 
     }
 }
