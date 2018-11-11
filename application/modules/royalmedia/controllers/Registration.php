@@ -67,14 +67,6 @@ class Registration extends MX_Controller
                         "user_id" => $userId,
                         "time_modified" => $response_time,
                     );
-
-                    if ($this->db->insert("items", $dataItem)) {
-                        $response["result"] = "true";
-                        $response["message"] = "Request saved successfully";
-                    } else {
-                        $response["result"] = "false";
-                        $response["message"] = "Unable to save item";
-                    }
                     //check if there is anything in users table
                     if (count($users) > 0) {
                         foreach ($users as $user) {
@@ -106,7 +98,14 @@ class Registration extends MX_Controller
                             $response["message"] = "Unable to save item";
                         }
                     }
-                    break;
+
+                    if ($this->db->insert("items", $dataItem)) {
+                        $response["result"] = "true";
+                        $response["message"] = "Request saved successfully";
+                    } else {
+                        $response["result"] = "false";
+                        $response["message"] = "Unable to save item";
+                    }
                 }
             } else {
                 $response["result"] = "false";
