@@ -72,7 +72,7 @@ class Favouritelistings extends MX_Controller
         $result2 = str_replace('&quot;', '"', $result);
         $json_object = json_decode($result2);
         $error = json_last_error();
-        var_dump($json_object);
+        var_dump($error);
         // $companies = $json_object->companies;
         // var_dump($companies);
         // for ($i = 0; $i < count($companies); $i++) {
