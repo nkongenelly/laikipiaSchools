@@ -52,7 +52,8 @@ class Favouritelistings extends MX_Controller
     public function favorite_listings()
     {
         $company = array();
-        $url = "https://infomoby-api.azurewebsites.net/index.php/ke/search_redesign/getfavouriteresults/user_id/-1.28333/36.81667/0/300";
+        $url = "http://infomoby-api.azurewebsites.net/index.php/ke/search_redesign/nearmeredesign/8.957046/38.763025/10/0/10";
+        // $url = "https://infomoby-api.azurewebsites.net/index.php/ke/search_redesign/getfavouriteresults/user_id/-1.28333/36.81667/0/300";
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -67,36 +68,25 @@ class Favouritelistings extends MX_Controller
         // }
         // var_dump($result);
         // echo $result;
-        echo "Serena Hotel";
-        // $json_object = json_decode($result);
+        // echo "Serena Hotel";
+        // $result2 = preg_replace('/\s+/', '', $result);
+        // $result = str_replace('&quot;', '"', $result);
+        $json_object = json_decode($result);
+        $error = json_last_error();
         // var_dump($json_object);
-        // $companies = $json_object->companies;
+        $companies = $json_object->companies;
         // var_dump($companies);
-        // for ($i = 0; $i < count($companies); $i++) {
-        //     // $comp = $companies[0]->company_name;
-        //     array_push($company, $companies[$i]->company_name);
-        //     var_dump($company);
-
-        // }
-        
-        
-        // $url2 = "https://prod-30.westeurope.logic.azure.com:443/workflows/39845fe9b8c740a196b2d0252c065ce9/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=_wN7n4v_Kw5P76DdXWbuWIkjYUpBSH3EHtT7ajmhLUc";
+        for ($i = 0; $i < count($companies); $i++) {
+            // $comp = $companies[0]->company_name;
+            $companyname = $companies[$i]->company_name_en;
+            $companyaddress = $companies[$i]->city_name_en;
+            $company[] = $companyname . ':' . $companyaddress;
             
-        //         $data = array("message" => $company);                                                                    
-        //         $data_string = json_encode($data);                                                                                   
-                                                                                                                                    
-        //         $ch2 = curl_init($url2);                                                                      
-        //         curl_setopt($ch2, CURLOPT_CUSTOMREQUEST, "POST");                                                                     
-        //         curl_setopt($ch2, CURLOPT_POSTFIELDS, $data_string);                                                                  
-        //         curl_setopt($ch2, CURLOPT_RETURNTRANSFER, true);                                                                      
-        //         curl_setopt($ch2, CURLOPT_HTTPHEADER, array(                                                                          
-        //             'Content-Type: application/json',                                                                                
-        //             'Content-Length: '.strlen($data_string))                                                                       
-        //         );                                                                                                                   
-                                                                                                                                    
-        //         $message = curl_exec($ch2);
-        //         curl_close($ch2);
-        // print_r($z[0]->company_name);
+            // array_push($company, $companies[$i]->company_name);
+        }
+        $company_name = json_encode($company);
+        echo $company_name;
+
 
     }
 
