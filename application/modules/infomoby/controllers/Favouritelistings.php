@@ -70,7 +70,7 @@ class Favouritelistings extends MX_Controller
         // echo "Serena Hotel";
         $json_object = json_decode($result);
         $error = json_last_error();
-        var_dump($error);
+        var_dump($result);
         // $companies = $json_object->companies;
         // var_dump($companies);
         // for ($i = 0; $i < count($companies); $i++) {
