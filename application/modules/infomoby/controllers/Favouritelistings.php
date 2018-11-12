@@ -91,7 +91,7 @@ class Favouritelistings extends MX_Controller
         foreach ($company_name as $comp) {
             // var_dump($comp);
             // $card = "<ul><li>" . $comp . "</li></ul>";
-            echo "<ul><li>" . $comp . "</li></ul>";
+            echo "<ol><li>" . $comp . "</li></ol>";
             // echo $card;
         }
         
