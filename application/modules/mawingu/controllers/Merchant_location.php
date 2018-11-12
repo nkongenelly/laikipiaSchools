@@ -72,6 +72,10 @@ class Merchant_location extends MX_Controller {
                     $bucket_name .= "_".$Client_type;
                 }
 
+                if(!empty($Address)){
+                    $bucket_name .= "_".$Address;
+                }
+
                 if(!empty($First_Name)){
                     $bucket_name .= "_".$First_Name;
                 }
@@ -80,29 +84,28 @@ class Merchant_location extends MX_Controller {
                     $bucket_name .= "_".$Second_name;
                 }
 
-                if(!empty($Address)){
-                    $bucket_name .= "_".$Address;
-                }
-
                 if(!empty($Equipment1)){
                     $bucket_name .= "_".$Equipment1;
                 }
 
-                if(!empty($IP_Address)){
-                    $bucket_name_ip .= $bucket_name."(".$IP_Address.")";
-                }
-
                 $data = array();
                 if(!empty($bucket_name)){
-                    $data['bucket_name'] = str_replace('  ', '', $bucket_name);
+                    $bucket_name = str_replace('  ', '', $bucket_name);
+                    $bucket_name = str_replace(' ', '', $bucket_name);
                     $data['bucket_name'] = str_replace(' ', '', $bucket_name);
+                }
+
+                if(!empty($IP_Address)){
+                    $IP_Address = str_replace('  ', '', $IP_Address);
+                    $IP_Address = str_replace(' ', '', $IP_Address);
+                    $bucket_name_ip = $bucket_name."(".$IP_Address.")";
                 }
                 
                 if(!empty($bucket_name_ip)){
-                    $data['bucket_name_ip'] = str_replace('  ', '', $bucket_name_ip);
-                    $data['bucket_name_ip'] = str_replace(' ', '', $bucket_name_ip);
+                    $data['bucket_name_ip'] = $bucket_name_ip;
                 }
-                
+                var_dump($data);
+                echo "<br/>";
                 if(count($data) > 0){
                     $this->db->where("merchant_location_id", $merchant_location_id);
                     $this->db->update($table, $data);
@@ -141,7 +144,11 @@ class Merchant_location extends MX_Controller {
                 $data_throughput_id = $res->data_throughput_id;
                 $Bucket_Name = $res->Bucket_Name;
                 $data = array();
-                $bucket = '';
+                $bucket = $generated_ip_address = '';
+                $bucket_name_array = explode('(', $Bucket_Name);
+                if(count($bucket_name_array) == 2){
+                    $generated_ip_address = str_replace(')', '', $bucket_name_array[1]);
+                }
                 
                 //check if throughput exists in location
                 if($merchant_locations->num_rows() > 0){
@@ -149,6 +156,7 @@ class Merchant_location extends MX_Controller {
                         $merchant_location_id = $row->merchant_location_id;
                         $Bucket_Name_location = $row->Bucket_Name;
                         $bucket_name_ip = $row->bucket_name_ip;
+                        $IP_Address = $row->IP_Address;
                         // echo $Bucket_Name." - ".$Bucket_Name_location."</br>";
                         if($Bucket_Name == $Bucket_Name_location){
                             $bucket = $Bucket_Name_location;
@@ -158,6 +166,13 @@ class Merchant_location extends MX_Controller {
                         else if($Bucket_Name == $bucket_name_ip){
                             $bucket = $bucket_name_ip;
                             break;
+                        }
+
+                        if(empty($bucket) && !empty($generated_ip_address)){
+                            if($generated_ip_address == $IP_Address){
+                                $bucket = $bucket_name_ip;
+                                break;
+                            }
                         }
                     }
                 }
