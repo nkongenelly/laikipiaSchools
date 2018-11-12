@@ -81,22 +81,16 @@ class Favouritelistings extends MX_Controller
             // $comp = $companies[0]->company_name;
             $companyname = $companies[$i]->company_name_en;
             $companyaddress = $companies[$i]->city_name_en;
-            $company[] = "Company Name:" . $companyname . "," . "City Name:" . $companyaddress;
+            $company[] = "Company Name:" . $companyname . " | " . "City Name:" . $companyaddress;
             
             // array_push($company, $companies[$i]->company_name);
         }
         $company_name = $company;
-        // var_dump($company_name);
-        // $company_name = $company;
-        foreach ($company_name as $comp) {
-            // var_dump($comp);
-            // $card = "<ul><li>" . $comp . "</li></ul>";
-            echo "<ol><li>" . $comp . "</li></ol>";
-            // echo $card;
+        //list the company name and contact
+        for ($i = 0; $i < count($company_name); $i++) {
+            $card = $company_name[$i];
+            echo "<ul><li>" . $card . "</li></ul>";
         }
-        
-        // var_dump($company_name);
-        // echo $company_name;
 
 
     }
