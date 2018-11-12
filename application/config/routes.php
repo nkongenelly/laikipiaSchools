@@ -61,13 +61,15 @@ $route['infomoby/getfavlistings'] = "infomoby/favouritelistings/favorite_listing
 
 /**
  * Royal Media Service routes
-*/
+ */
 $route['royalmedia/register-service'] = "royalmedia/registration/register_services";
-$route['royalmedia/search'] = "royalmedia/fetchdata/services_search";
+$route['royalmedia/search'] = "royalmedia/registration/services_search";
+$route['royalmedia/items'] = "royalmedia/registration/items_search";
+$route['royalmedia/categories'] = "royalmedia/registration/categories";
 
 /**
  * Mawingu routes
-*/
+ */
 $route['mawingu/generate-bucket-names'] = "mawingu/merchant_location/generate_bucket_names";
 $route['mawingu/remove-throughput-spaces'] = "mawingu/merchant_location/remove_throughput_spaces";
 $route['mawingu/update-bucket'] = "mawingu/merchant_location/update_data_throughput_with_location";
