@@ -61,8 +61,8 @@ class Registration extends MX_Controller {
                     // $phone = $chat[0]["phone"];
                     //  $logo = $chat[0]["logo"];
                     // $locoation = $chat[0]["locoation"];
-                    array_push($resultString,$row->busname);
-                    var_dump($resultString);
+                    // array_push($resultString,$row->busname);
+                    // var_dump($resultString);
                     $data = array(
                         "id"=>$count++,
                         "business_name" => $row->busname,
