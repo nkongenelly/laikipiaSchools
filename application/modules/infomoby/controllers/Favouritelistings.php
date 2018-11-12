@@ -52,6 +52,7 @@ class Favouritelistings extends MX_Controller
     public function favorite_listings()
     {
         $company = array();
+        $card = "";
         $url = "http://infomoby-api.azurewebsites.net/index.php/ke/search_redesign/nearmeredesign/8.957046/38.763025/10/0/10";
         // $url = "https://infomoby-api.azurewebsites.net/index.php/ke/search_redesign/getfavouriteresults/user_id/-1.28333/36.81667/0/300";
         $ch = curl_init($url);
@@ -80,12 +81,22 @@ class Favouritelistings extends MX_Controller
             // $comp = $companies[0]->company_name;
             $companyname = $companies[$i]->company_name_en;
             $companyaddress = $companies[$i]->city_name_en;
-            $company[] = $companyname . ':' . $companyaddress;
+            $company[] = "Company Name:" . $companyname . "," . "City Name:" . $companyaddress;
             
             // array_push($company, $companies[$i]->company_name);
         }
-        $company_name = json_encode($company);
-        echo $company_name;
+        $company_name = $company;
+        var_dump($company_name);
+        // $company_name = $company;
+        foreach ($company_name as $comp) {
+            var_dump($comp);
+            $card = "<ul><li>" . $comp . "</li></ul>";
+            // echo "<ul><li>" . "Company:" . $comp . "</li></ul>";
+            // echo $card;
+        }
+        
+        // var_dump($company_name);
+        // echo $company_name;
 
 
     }
