@@ -86,13 +86,13 @@ class Favouritelistings extends MX_Controller
             // array_push($company, $companies[$i]->company_name);
         }
         $company_name = $company;
-        var_dump($company_name);
+        // var_dump($company_name);
         // $company_name = $company;
         foreach ($company_name as $comp) {
             // var_dump($comp);
-            $card = "<ul><li>" . $comp . "</li></ul>";
-            // echo "<ul><li>" . "Company:" . $comp . "</li></ul>";
-            echo $card;
+            // $card = "<ul><li>" . $comp . "</li></ul>";
+            echo "<ul><li>" . "Company:" . $comp . "</li></ul>";
+            // echo $card;
         }
         
         // var_dump($company_name);
