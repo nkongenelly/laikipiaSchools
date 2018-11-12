@@ -68,8 +68,9 @@ class Favouritelistings extends MX_Controller
         // var_dump($result);
         // echo $result;
         // echo "Serena Hotel";
-        $json_object = json_decode($result, true);
-        var_dump($json_object);
+        $json_object = json_decode($result);
+        $error = json_last_error();
+        var_dump($error);
         // $companies = $json_object->companies;
         // var_dump($companies);
         // for ($i = 0; $i < count($companies); $i++) {
@@ -78,25 +79,6 @@ class Favouritelistings extends MX_Controller
         //     var_dump($company);
 
         // }
-        
-        
-        // $url2 = "https://prod-30.westeurope.logic.azure.com:443/workflows/39845fe9b8c740a196b2d0252c065ce9/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=_wN7n4v_Kw5P76DdXWbuWIkjYUpBSH3EHtT7ajmhLUc";
-            
-        //         $data = array("message" => $company);                                                                    
-        //         $data_string = json_encode($data);                                                                                   
-                                                                                                                                    
-        //         $ch2 = curl_init($url2);                                                                      
-        //         curl_setopt($ch2, CURLOPT_CUSTOMREQUEST, "POST");                                                                     
-        //         curl_setopt($ch2, CURLOPT_POSTFIELDS, $data_string);                                                                  
-        //         curl_setopt($ch2, CURLOPT_RETURNTRANSFER, true);                                                                      
-        //         curl_setopt($ch2, CURLOPT_HTTPHEADER, array(                                                                          
-        //             'Content-Type: application/json',                                                                                
-        //             'Content-Length: '.strlen($data_string))                                                                       
-        //         );                                                                                                                   
-                                                                                                                                    
-        //         $message = curl_exec($ch2);
-        //         curl_close($ch2);
-        // print_r($z[0]->company_name);
 
     }
 
