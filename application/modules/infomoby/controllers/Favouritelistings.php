@@ -80,7 +80,7 @@ class Favouritelistings extends MX_Controller
             // $comp = $companies[0]->company_name;
             $company[] = $companies[$i]->company_name;
             // array_push($company, $companies[$i]->company_name);
-            var_dump($company);
+            echo $company;
 
         }
 
