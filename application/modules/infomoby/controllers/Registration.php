@@ -64,7 +64,7 @@ class Registration extends MX_Controller {
                     // array_push($resultString,$row->busname);
                     // var_dump($resultString);
                     $data = array(
-                        "id"=>$count++,
+                        // "id"=>$count++,
                         "business_name" => $row->busname,
                         "category" => $row->cat,
                         "phone_number" => $row->phone,
