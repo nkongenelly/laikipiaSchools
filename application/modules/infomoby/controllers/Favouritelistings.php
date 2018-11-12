@@ -74,14 +74,14 @@ class Favouritelistings extends MX_Controller
         $json_object = json_decode($result2);
         $error = json_last_error();
         var_dump($json_object);
-        // $companies = $json_object->companies;
-        // var_dump($companies);
-        // for ($i = 0; $i < count($companies); $i++) {
-        //     // $comp = $companies[0]->company_name;
-        //     array_push($company, $companies[$i]->company_name);
-        //     var_dump($company);
+        $companies = $json_object->companies;
+        var_dump($companies);
+        for ($i = 0; $i < count($companies); $i++) {
+            // $comp = $companies[0]->company_name;
+            array_push($company, $companies[$i]->company_name);
+            var_dump($company);
 
-        // }
+        }
 
     }
 
