@@ -89,10 +89,10 @@ class Favouritelistings extends MX_Controller
         var_dump($company_name);
         // $company_name = $company;
         foreach ($company_name as $comp) {
-            var_dump($comp);
+            // var_dump($comp);
             $card = "<ul><li>" . $comp . "</li></ul>";
             // echo "<ul><li>" . "Company:" . $comp . "</li></ul>";
-            // echo $card;
+            echo $card;
         }
         
         // var_dump($company_name);
