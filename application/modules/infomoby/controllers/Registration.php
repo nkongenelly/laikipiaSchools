@@ -69,7 +69,7 @@ class Registration extends MX_Controller {
                         "category" => $row->cat,
                         "phone_number" => $row->phone,
                         "logo" => $row->logo,
-                        "location" => $row->locoation
+                        "location" => $row->location
                         // "id"=>"1",
                         // "business_name" => "Queens Resturant",
                         // "category" => "Service",
