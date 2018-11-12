@@ -46,7 +46,7 @@ class Registration extends MX_Controller {
         // echo json_encode($pureresultString);
         // var_dump($json_string);
         $json_object = json_decode($json_string);
-        var_dump($json_object);
+        // var_dump($json_object);
         // $response = array();
         // $response["start"]=$json_string;
         $count =0;
