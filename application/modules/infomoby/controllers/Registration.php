@@ -50,11 +50,11 @@ class Registration extends MX_Controller {
             {
                 foreach($json_object as $row)
                 {
-                    $busname = $chat[0]["busname"];
-                    $cat = $chat[0]["cat"];
-                    $phone = $chat[0]["phone"];
-                     $logo = $chat[0]["logo"];
-                    $locoation = $chat[0]["locoation"];
+                    // $busname = $chat[0]["busname"];
+                    // $cat = $chat[0]["cat"];
+                    // $phone = $chat[0]["phone"];
+                    //  $logo = $chat[0]["logo"];
+                    // $locoation = $chat[0]["locoation"];
                     array_push($resultString,$row->busname);
                     var_dump($resultString);
                     $data = array(
@@ -94,12 +94,12 @@ class Registration extends MX_Controller {
         }
         // getData();
 
-        $contents = $this->db->count_all('register_businesses');
-        echo json_encode($contents);
+        echo $this->db->count_all('register_businesses');
+        // echo json_encode($contents);
         echo json_encode($response);
     }
-    public function getData(){
-       $contents = $this->db->count_all('register_businesses');
-       echo json_encode($contents);
-    }
+    // public function getData(){
+    //    $contents = $this->db->count_all('register_businesses');
+    //    echo json_encode($contents);
+    // }
 }
