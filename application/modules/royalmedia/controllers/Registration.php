@@ -217,7 +217,8 @@ class Registration extends MX_Controller
     }
 
     public function categories(){
-        $this->db->select('categories');
+        $this->db->select('*');
+        $this->db->from("categories");
         $categories = $this->db->get();  
         echo json_encode($categories->result());
     }
