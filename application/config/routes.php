@@ -65,6 +65,7 @@ $route['infomoby/getfavlistings'] = "infomoby/favouritelistings/favorite_listing
 $route['royalmedia/register-service'] = "royalmedia/registration/register_services";
 $route['royalmedia/search'] = "royalmedia/registration/services_search";
 $route['royalmedia/items'] = "royalmedia/registration/items_search";
+$route['royalmedia/categories'] = "royalmedia/registration/categories";
 
 /**
  * Mawingu routes

@@ -36,6 +36,14 @@ class Registration extends MX_Controller
         }
     }
 
+    public function index(){
+        $json_string = file_get_contents("php://input");
+        $json_object = json_decode($json_string);
+        $response = array();
+
+        $this->load->view('royalMediaServices/searchView',$response);
+    }
+
     public function register_services()
     {
         $json_string = file_get_contents("php://input");
@@ -206,5 +214,11 @@ class Registration extends MX_Controller
         }else{
             echo "Category is null";
         }
+    }
+
+    public function categories(){
+        $this->db->select('categories');
+        $categories = $this->db->get();  
+        echo json_encode($categories->result());
     }
 }
