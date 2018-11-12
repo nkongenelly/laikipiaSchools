@@ -7,13 +7,13 @@ class Migration_Register_Business extends CI_Migration
            array(
               'id' => array(
                  'type' => 'INT',
-                 'constraint' => 5,
-                 'unsigned' => true,
+                //  'constraint' => 5,
+                //  'unsigned' => true,
                  'auto_increment' => true
               ),
               'business_name' => array(
                  'type' => 'TEXT',
-                 'constraint' => '100',
+                 'constraint' => '400',
               ),
               'category' => array(
                  'type' => 'TEXT',
