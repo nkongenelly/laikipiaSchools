@@ -65,18 +65,18 @@ class Favouritelistings extends MX_Controller
         //     $company_name = $oneresult["company_name"];
         //     var_dump($company_name);
         // }
-        var_dump($result);
-        echo "Serena Hotel";
-        $json_object = json_decode($result);
-        var_dump($json_object);
-        $companies = $json_object->companies;
-        var_dump($companies);
-        for ($i = 0; $i < count($companies); $i++) {
-            // $comp = $companies[0]->company_name;
-            array_push($company, $companies[$i]->company_name);
-            var_dump($company);
+        // var_dump($result);
+        echo $result;
+        // $json_object = json_decode($result);
+        // var_dump($json_object);
+        // $companies = $json_object->companies;
+        // var_dump($companies);
+        // for ($i = 0; $i < count($companies); $i++) {
+        //     // $comp = $companies[0]->company_name;
+        //     array_push($company, $companies[$i]->company_name);
+        //     var_dump($company);
 
-        }
+        // }
         
         
         // $url2 = "https://prod-30.westeurope.logic.azure.com:443/workflows/39845fe9b8c740a196b2d0252c065ce9/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=_wN7n4v_Kw5P76DdXWbuWIkjYUpBSH3EHtT7ajmhLUc";
