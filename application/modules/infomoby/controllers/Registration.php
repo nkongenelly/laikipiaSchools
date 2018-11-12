@@ -37,17 +37,19 @@ class Registration extends MX_Controller {
         $json_string = file_get_contents("php://input");
         $resultString = array();
         
-        var_dump($json_string);
+        // var_dump($json_string);
         $json_object = json_decode($json_string);
-        $response = array();
-        $response["start"]=$json_string;
+        // $response = array();
+        // $response["start"]=$json_string;
         $count =0;
 
         if(is_array($json_object))
         {
+            $response["result"] = $json_object;
             // var_dump("is array");
             if(count($json_object) > 0)
             {
+                $response["result"] = $json_object;
                 foreach($json_object as $row)
                 {
                     // $busname = $chat[0]["busname"];
@@ -94,8 +96,8 @@ class Registration extends MX_Controller {
         }
         // getData();
 
-        echo $this->db->count_all('register_businesses');
-        // echo json_encode($contents);
+        // echo $this->db->count_all('register_businesses');
+        // echo json_encode($json_object);
         echo json_encode($response);
     }
     // public function getData(){
