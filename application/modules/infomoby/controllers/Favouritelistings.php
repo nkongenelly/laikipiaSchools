@@ -69,10 +69,10 @@ class Favouritelistings extends MX_Controller
         // echo $result;
         // echo "Serena Hotel";
         // $result2 = preg_replace('/\s+/', '', $result);
-        $result2 = str_replace('&quot;', '"', $result);
-        $json_object = json_decode($result2);
+        $result = str_replace('&quot;', '"', $result);
+        $json_object = json_decode($result);
         $error = json_last_error();
-        var_dump($error);
+        var_dump($json_object);
         // $companies = $json_object->companies;
         // var_dump($companies);
         // for ($i = 0; $i < count($companies); $i++) {
