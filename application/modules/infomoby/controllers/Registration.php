@@ -101,6 +101,8 @@ class Registration extends MX_Controller {
         else{
             $response["result"] = "false";
             $response["message"] = "Error in request object";
+            $response["object"] = json_encode($json_object);
+            $response["array"] = is_array($json_object);
         }
         // getData();
 
