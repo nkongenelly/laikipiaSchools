@@ -203,6 +203,8 @@ class Registration extends MX_Controller
             $items = $this->db->get();
             //$items = $this->db->get('items');
             echo json_encode($items->result());
+        }else{
+            echo "Category is null";
         }
     }
 }
