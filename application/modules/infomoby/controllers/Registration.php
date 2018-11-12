@@ -34,12 +34,12 @@ class Registration extends MX_Controller {
 
     public function register_business()
     {
-        // $json_string = file_get_contents("php://input");
-        $json_string = '[{"busname":"Palace Restaurant",
-            "cat":"Service",
-            "phone":"0734567890",
-            "logo":"https://cdn.ins-000.kms.osi.office.net/att/d16d1d14aea759eff7824213db58c9b8f5f01b0dd898951240e2082851e7146a.jpg?sv=2015-12-11&sr=b&sig=F73wJRZeEKq%2FaEuVlzIa6lLr7biTK98%2BZYYSgJBOLhA%3D&st=2018-11-12T05:06:50Z&se=2292-08-27T06:06:50Z&sp=r",
-            "location":"Parklands Road, Nairobi, Kenya"}]';
+        $json_string = file_get_contents("php://input");
+        // $json_string = '[{"busname":"Palace Restaurant",
+        //     "cat":"Service",
+        //     "phone":"0734567890",
+        //     "logo":"https://cdn.ins-000.kms.osi.office.net/att/d16d1d14aea759eff7824213db58c9b8f5f01b0dd898951240e2082851e7146a.jpg?sv=2015-12-11&sr=b&sig=F73wJRZeEKq%2FaEuVlzIa6lLr7biTK98%2BZYYSgJBOLhA%3D&st=2018-11-12T05:06:50Z&se=2292-08-27T06:06:50Z&sp=r",
+        //     "location":"Parklands Road, Nairobi, Kenya"}]';
         // $resultString = array();
         $pureresultString = array();
         // array_push($pureresultString, $json_string);
