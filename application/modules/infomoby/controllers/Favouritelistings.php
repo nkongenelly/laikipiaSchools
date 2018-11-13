@@ -53,6 +53,7 @@ class Favouritelistings extends MX_Controller
     {
         $company = array();
         $card = "";
+        $count = 0;
         $url = "http://infomoby-api.azurewebsites.net/index.php/ke/search_redesign/nearmeredesign/8.957046/38.763025/10/0/10";
         // $url = "https://infomoby-api.azurewebsites.net/index.php/ke/search_redesign/getfavouriteresults/user_id/-1.28333/36.81667/0/300";
         $ch = curl_init($url);
@@ -87,11 +88,19 @@ class Favouritelistings extends MX_Controller
         }
         $company_name = $company;
         //list the company name and contact
+        echo "<table border='2px' border-color='blue'>";
+        echo "<tr>";
+        echo "<th>Count</th><th>Companies Near Me</th>";
+        echo "</tr>";
         for ($i = 0; $i < count($company_name); $i++) {
+            $count++;
             $card = $company_name[$i];
-            echo "<ul><li>" . $card . "</li></ul>";
+            echo "<tr>";
+            echo "<td>" . $count . "</td>";
+            echo "<td>" . $card . "</td>";
+            echo "</tr>";
         }
-
+        echo "</table>";
 
     }
 
