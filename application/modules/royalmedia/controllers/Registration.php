@@ -215,4 +215,38 @@ class Registration extends MX_Controller
         $categories = $this->db->get();  
         echo json_encode($categories->result());
     }
+
+    public function purchase_items()
+    {
+        $json_string = file_get_contents("php://input");
+        $json_object = json_decode($json_string);
+        $response = array();
+        
+        if (is_array($json_object)) {
+            if (count($json_object) > 0) {
+                $row = $json_object[0];
+                $data['quantity'] = $row->quantity;
+                $data['item_id'] = $row->item_id;
+                $data['customer_name'] = $row->customer_name;
+                $data['customer_phone'] = $row->customer_phone;
+                
+                if($this->db->insert("orders", $data)){
+                    $response["result"] = "true";
+                }
+                
+                else{
+                    $response["result"] = "false";
+                    $response["message"] = "Unable to save";
+                }
+                
+            } else {
+                $response["result"] = "false";
+                $response["message"] = "No results present in request object";
+            }
+        } else {
+            $response["result"] = "false";
+            $response["message"] = "Error in request object";
+        }
+        echo json_encode($response);
+    }
 }
