@@ -181,15 +181,21 @@ class Registration extends MX_Controller
         $json_string = file_get_contents("php://input");
         $json_object = json_decode($json_string);
         $response = array();
-
-        //params to search with
-        $category = '';
-
+        
         if (is_array($json_object)) {
             if (count($json_object) > 0) {
-                foreach ($json_object as $row) {
-                    $category = $row->category;
-                }
+                $row = $json_object[0];
+                $item = $row->item;
+                $location = $row->location;
+                
+                $this->db->select('items.*, users.name, users.phone_number');
+                $this->db->from('items, users');
+                $this->db->where("items.item LIKE '%".$item."%' AND items.location LIKE '%".$location."%' AND items.user_id = users.user_id");
+                $items = $this->db->get();
+
+                $response["result"] = "true";
+                $response["message"] = $items->result();
+                
             } else {
                 $response["result"] = "false";
                 $response["message"] = "No results present in request object";
@@ -198,20 +204,7 @@ class Registration extends MX_Controller
             $response["result"] = "false";
             $response["message"] = "Error in request object";
         }
-
-        // $category = "Cereals";
-        // $item = "Bean";
-        // $units = "kg";
-        if ($category != '') {
-            $this->db->select('item');
-            $this->db->from('items');
-            $this->db->where('category', $category);
-            $items = $this->db->get();
-            //$items = $this->db->get('items');
-            echo json_encode($items->result());
-        }else{
-            echo "Category is null";
-        }
+        echo json_encode($response);
     }
 
     public function categories(){
