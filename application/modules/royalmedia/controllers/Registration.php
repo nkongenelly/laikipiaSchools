@@ -44,6 +44,31 @@ class Registration extends MX_Controller
         $this->load->view('royalMediaServices/searchView',$response);
     }
 
+    public function get_category_id($category){
+        $this->db->where("category", $category);
+        $query = $this->db->get("categories");
+        $category_id = NULL;
+        if($query->num_rows() > 0){
+            $row = $query->row();
+            $category_id = $row->category_id;
+        }
+
+        return $category_id;
+    }
+
+    public function user_exists($userId){
+        $this->db->where("user_id", $userId);
+        $query = $this->db->get("users");
+        
+        if($query->num_rows() > 0){
+            return TRUE;
+        }
+
+        else {
+            return FALSE;
+        }
+    }
+
     public function register_services()
     {
         $json_string = file_get_contents("php://input");
@@ -67,44 +92,20 @@ class Registration extends MX_Controller
                         "price" => $row->price,
                         "user_id" => $userId,
                         "image" => $row->image,
+                        "location" => $row->location,
+                        "category_id" => $this->get_category_id($row->category),
                     );
 
-                    $dataUser = array(
-                        "name" => $row->name,
-                        "phone_number" => $row->phone,
-                        "user_id" => $userId,
-                        "time_modified" => $response_time,
-                    );
-                    //check if there is anything in users table
-                    if (count($users) > 0) {
-                        foreach ($users as $user) {
-                            //check if the phone number already exists in db
-                            if ($user->user_id == $userId) {
-                                // if yes
-                                $temp_phone = "anything";
-                                break;
-                            }
-                        }
+                    //Check if user exists
+                    if($this->user_exists($userId) == FALSE){
+                        $dataUser = array(
+                            "name" => $row->name,
+                            "phone_number" => $row->phone,
+                            "user_id" => $userId,
+                            "time_modified" => $response_time,
+                        );
 
-                        //if phone number in the db abd the incoming do not match
-                        if ($temp_phone == 'temp_phone') {
-                            if ($this->db->insert("users", $dataUser)) {
-                                $response["result"] = "true";
-                                $response["message"] = "Request saved successfully";
-                            } else {
-                                $response["result"] = "false";
-                                $response["message"] = "Unable to save item";
-                            }
-                        }
-                    } else {
-                        // var_dump($data); die();
-                        if ($this->db->insert("users", $dataUser)) {
-                            $response["result"] = "true";
-                            $response["message"] = "Request saved successfully";
-                        } else {
-                            $response["result"] = "false";
-                            $response["message"] = "Unable to save item";
-                        }
+                        $this->db->insert("users", $dataUser);
                     }
 
                     if ($this->db->insert("items", $dataItem)) {
@@ -125,9 +126,6 @@ class Registration extends MX_Controller
             $response["message"] = "Error in request object";
         }
         echo json_encode($response);
-        // foreach()
-        //$sam = $this->db->get('users')->result();
-        // var_dump(count($users));
     }
 
     public function services_search()
