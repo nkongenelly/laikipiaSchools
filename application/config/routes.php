@@ -68,6 +68,7 @@ $route['royalmedia/items'] = "royalmedia/registration/items_search";
 $route['royalmedia/categories'] = "royalmedia/registration/categories";
 $route['royalmedia/category-items'] = "royalmedia/registration/category_items";
 $route['royalmedia/purchase-items'] = "royalmedia/registration/purchase_items";
+$route['royalmedia/units'] = "royalmedia/registration/units";
 
 /**
  * Mawingu routes
