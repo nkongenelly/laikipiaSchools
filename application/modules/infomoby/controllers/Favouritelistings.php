@@ -82,25 +82,25 @@ class Favouritelistings extends MX_Controller
             // $comp = $companies[0]->company_name;
             $companyname = $companies[$i]->company_name_en;
             $companyaddress = $companies[$i]->city_name_en;
-            $company[] = "Company Name:" . $companyname . " | " . "City Name:" . $companyaddress;
+            $company[] = $companyname . $companyaddress;
             
             // array_push($company, $companies[$i]->company_name);
         }
-        $company_name = $company;
-        //list the company name and contact
-        echo "<table border='2px' border-color='blue'>";
-        echo "<tr>";
-        echo "<th>Count</th><th>Companies Near Me</th>";
-        echo "</tr>";
-        for ($i = 0; $i < count($company_name); $i++) {
-            $count++;
-            $card = $company_name[$i];
-            echo "<tr>";
-            echo "<td>" . $count . "</td>";
-            echo "<td>" . $card . "</td>";
-            echo "</tr>";
-        }
-        echo "</table>";
+        echo $company;
+        // //list the company name and contact
+        // echo "<table border='2px' border-color='blue'>";
+        // echo "<tr>";
+        // echo "<th>Count</th><th>Companies Near Me</th>";
+        // echo "</tr>";
+        // for ($i = 0; $i < count($company_name); $i++) {
+        //     $count++;
+        //     $card = $company_name[$i];
+        //     echo "<tr>";
+        //     echo "<td>" . $count . "</td>";
+        //     echo "<td>" . $card . "</td>";
+        //     echo "</tr>";
+        // }
+        // echo "</table>";
 
     }
 
