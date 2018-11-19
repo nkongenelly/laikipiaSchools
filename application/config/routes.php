@@ -78,3 +78,6 @@ $route['mawingu/heatmap'] = "mawingu/merchant_location/populate_heat_map";
  * LaikipiaSchools routes
  */
 $route['laikipiaSchools/save'] = "laikipiaSchools/save/savetodb";
+$route['laikipiaSchools/home'] = "laikipiaSchools/pages/home";
+// $route['default_controller'] = 'pages/view';
+// $route['(:any)'] = 'pages/view/$1';
