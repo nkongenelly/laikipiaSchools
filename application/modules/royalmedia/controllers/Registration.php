@@ -192,7 +192,7 @@ class Registration extends MX_Controller
                 $this->db->from('items, users');
                 $this->db->order_by("category", "ASC");
                 $this->db->order_by("time_modified", "DESC");
-                $this->db->where("items.item LIKE '%".$item."%' AND items.location LIKE '%".$location."%' AND items.user_id = users.user_id");
+                $this->db->where("items.item LIKE '%".$item."%' OR items.location LIKE '%".$location."%' OR items.user_id = users.user_id");
                 $items = $this->db->get();
 
                 $response["result"] = "true";
