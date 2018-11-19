@@ -36,42 +36,6 @@ class Registration extends MX_Controller
         }
     }
 
-<<<<<<< HEAD
-    public function index(){
-        $json_string = file_get_contents("php://input");
-        $json_object = json_decode($json_string);
-        $response = array();
-
-        $this->load->view('royalMediaServices/searchView',$response);
-    }
-
-    public function get_category_id($category){
-        $this->db->where("category", $category);
-        $query = $this->db->get("categories");
-        $category_id = NULL;
-        if($query->num_rows() > 0){
-            $row = $query->row();
-            $category_id = $row->category_id;
-        }
-
-        return $category_id;
-    }
-
-    public function user_exists($userId){
-        $this->db->where("user_id", $userId);
-        $query = $this->db->get("users");
-        
-        if($query->num_rows() > 0){
-            return TRUE;
-        }
-
-        else {
-            return FALSE;
-        }
-    }
-
-=======
->>>>>>> 6a446e27c45886319c946fe6ca434f04ac501454
     public function register_services()
     {
         $json_string = file_get_contents("php://input");
@@ -95,22 +59,6 @@ class Registration extends MX_Controller
                         "price" => $row->price,
                         "user_id" => $userId,
                         "image" => $row->image,
-<<<<<<< HEAD
-                        "location" => $row->location,
-                        "category_id" => $this->get_category_id($row->category),
-                    );
-
-                    //Check if user exists
-                    if($this->user_exists($userId) == FALSE){
-                        $dataUser = array(
-                            "name" => $row->name,
-                            "phone_number" => $row->phone,
-                            "user_id" => $userId,
-                            "time_modified" => $response_time,
-                        );
-
-                        $this->db->insert("users", $dataUser);
-=======
                     );
 
                     $dataUser = array(
@@ -149,7 +97,6 @@ class Registration extends MX_Controller
                             $response["result"] = "false";
                             $response["message"] = "Unable to save item";
                         }
->>>>>>> 6a446e27c45886319c946fe6ca434f04ac501454
                     }
 
                     if ($this->db->insert("items", $dataItem)) {
@@ -170,12 +117,9 @@ class Registration extends MX_Controller
             $response["message"] = "Error in request object";
         }
         echo json_encode($response);
-<<<<<<< HEAD
-=======
         // foreach()
         //$sam = $this->db->get('users')->result();
         // var_dump(count($users));
->>>>>>> 6a446e27c45886319c946fe6ca434f04ac501454
     }
 
     public function services_search()
@@ -231,87 +175,6 @@ class Registration extends MX_Controller
         $json_string = file_get_contents("php://input");
         $json_object = json_decode($json_string);
         $response = array();
-<<<<<<< HEAD
-        
-        if (is_array($json_object)) {
-            if (count($json_object) > 0) {
-                $row = $json_object[0];
-                $item = $row->item;
-                $location = $row->location;
-                
-                $this->db->select('items.*, users.name, users.phone_number');
-                $this->db->from('items, users');
-                $this->db->order_by("category", "ASC");
-                $this->db->order_by("time_modified", "DESC");
-                $this->db->where("items.item LIKE '%".$item."%' AND items.location LIKE '%".$location."%' AND items.user_id = users.user_id");
-                $items = $this->db->get();
-
-                $response["result"] = "true";
-                $response["message"] = $items->result();
-                
-            } else {
-                $response["result"] = "false";
-                $response["message"] = "No results present in request object";
-            }
-        } else {
-            $response["result"] = "false";
-            $response["message"] = "Error in request object";
-        }
-        echo json_encode($response);
-    }
-
-    public function categories(){
-        $this->db->select('*');
-        $this->db->from("categories");
-        $categories = $this->db->get();  
-        echo json_encode($categories->result());
-    }
-
-    public function items(){
-        $this->db->select('*');
-        $this->db->from("items");
-        $items = $this->db->get();  
-        echo json_encode($items->result());
-    }
-
-    public function category_items(){
-        $this->db->select('*');
-        $this->db->from("category_items");
-        $category_items = $this->db->get();  
-        echo json_encode($category_items->result());
-    }
-
-    public function units(){
-        $this->db->select('*');
-        $this->db->from("units");
-        $units = $this->db->get();  
-        echo json_encode($units->result());
-    }
-
-    public function purchase_items()
-    {
-        $json_string = file_get_contents("php://input");
-        $json_object = json_decode($json_string);
-        $response = array();
-        
-        if (is_array($json_object)) {
-            if (count($json_object) > 0) {
-                $row = $json_object[0];
-                $data['quantity'] = $row->quantity;
-                $data['item_id'] = $row->item_id;
-                $data['customer_name'] = $row->customer_name;
-                $data['customer_phone'] = $row->customer_phone;
-                
-                if($this->db->insert("orders", $data)){
-                    $response["result"] = "true";
-                }
-                
-                else{
-                    $response["result"] = "false";
-                    $response["message"] = "Unable to save";
-                }
-                
-=======
 
         //params to search with
         $category = '';
@@ -321,7 +184,6 @@ class Registration extends MX_Controller
                 foreach ($json_object as $row) {
                     $category = $row->category;
                 }
->>>>>>> 6a446e27c45886319c946fe6ca434f04ac501454
             } else {
                 $response["result"] = "false";
                 $response["message"] = "No results present in request object";
@@ -330,9 +192,6 @@ class Registration extends MX_Controller
             $response["result"] = "false";
             $response["message"] = "Error in request object";
         }
-<<<<<<< HEAD
-        echo json_encode($response);
-=======
 
         // $category = "Cereals";
         // $item = "Bean";
@@ -347,6 +206,5 @@ class Registration extends MX_Controller
         }else{
             echo "Category is null";
         }
->>>>>>> 6a446e27c45886319c946fe6ca434f04ac501454
     }
 }
