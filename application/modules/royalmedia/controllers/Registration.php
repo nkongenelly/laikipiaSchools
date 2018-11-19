@@ -216,6 +216,20 @@ class Registration extends MX_Controller
         echo json_encode($categories->result());
     }
 
+    public function items(){
+        $this->db->select('*');
+        $this->db->from("items");
+        $items = $this->db->get();  
+        echo json_encode($items->result());
+    }
+
+    public function category_items(){
+        $this->db->select('*');
+        $this->db->from("category_items");
+        $category_items = $this->db->get();  
+        echo json_encode($category_items->result());
+    }
+
     public function purchase_items()
     {
         $json_string = file_get_contents("php://input");

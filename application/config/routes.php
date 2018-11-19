@@ -66,6 +66,7 @@ $route['royalmedia/register-service'] = "royalmedia/registration/register_servic
 $route['royalmedia/search'] = "royalmedia/registration/services_search";
 $route['royalmedia/items'] = "royalmedia/registration/items_search";
 $route['royalmedia/categories'] = "royalmedia/registration/categories";
+$route['royalmedia/category-items'] = "royalmedia/registration/category_items";
 $route['royalmedia/purchase-items'] = "royalmedia/registration/purchase_items";
 
 /**
