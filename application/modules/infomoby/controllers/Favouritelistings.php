@@ -77,16 +77,18 @@ class Favouritelistings extends MX_Controller
         $error = json_last_error();
         // var_dump($json_object);
         $companies = $json_object->companies;
+        $allCompanies = [];
         // var_dump($companies);
         for ($i = 0; $i < count($companies); $i++) {
             // $comp = $companies[0]->company_name;
             $companyname = $companies[$i]->company_name_en;
             $companyaddress = $companies[$i]->city_name_en;
-            $company[] = $companyname . $companyaddress;
-            
-            // array_push($company, $companies[$i]->company_name);
+            $company['companyName'] = $companyname;
+            $company['companyAddress'] = $companyaddress;
+
+            array_push($allCompanies, $company);
         }
-        echo $company;
+        var_dump($allCompanies);
         // //list the company name and contact
         // echo "<table border='2px' border-color='blue'>";
         // echo "<tr>";
