@@ -52,7 +52,6 @@ class Favouritelistings extends MX_Controller
     public function favorite_listings()
     {
         $company = array();
-        $card = "";
         $count = 0;
         $url = "http://infomoby-api.azurewebsites.net/index.php/ke/search_redesign/nearmeredesign/8.957046/38.763025/10/0/10";
         // $url = "https://infomoby-api.azurewebsites.net/index.php/ke/search_redesign/getfavouriteresults/user_id/-1.28333/36.81667/0/300";
