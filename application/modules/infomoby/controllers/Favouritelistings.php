@@ -88,7 +88,7 @@ class Favouritelistings extends MX_Controller
 
             array_push($allCompanies, $company);
         }
-        var_dump($allCompanies);
+        echo (json_encode($allCompanies));
         // //list the company name and contact
         // echo "<table border='2px' border-color='blue'>";
         // echo "<tr>";
