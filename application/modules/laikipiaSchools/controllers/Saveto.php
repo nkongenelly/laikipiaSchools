@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Save extends MX_Controller {
+class Saveto extends MX_Controller {
 	/**
 	 * Constructor for this controller.
 	 *

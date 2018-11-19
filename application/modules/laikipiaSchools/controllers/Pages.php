@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Registration extends MX_Controller {
+class Pages extends MX_Controller {
 	/**
 	 * Constructor for this controller.
 	 *
