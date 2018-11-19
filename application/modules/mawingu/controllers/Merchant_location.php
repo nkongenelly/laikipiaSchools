@@ -72,10 +72,13 @@ class Merchant_location extends MX_Controller {
                     $bucket_name .= "_".$Client_type;
                 }
 
+<<<<<<< HEAD
                 if(!empty($Address)){
                     $bucket_name .= "_".$Address;
                 }
 
+=======
+>>>>>>> 6a446e27c45886319c946fe6ca434f04ac501454
                 if(!empty($First_Name)){
                     $bucket_name .= "_".$First_Name;
                 }
@@ -84,10 +87,18 @@ class Merchant_location extends MX_Controller {
                     $bucket_name .= "_".$Second_name;
                 }
 
+<<<<<<< HEAD
+=======
+                if(!empty($Address)){
+                    $bucket_name .= "_".$Address;
+                }
+
+>>>>>>> 6a446e27c45886319c946fe6ca434f04ac501454
                 if(!empty($Equipment1)){
                     $bucket_name .= "_".$Equipment1;
                 }
 
+<<<<<<< HEAD
                 $data = array();
                 if(!empty($bucket_name)){
                     $bucket_name = str_replace('  ', '', $bucket_name);
@@ -106,6 +117,23 @@ class Merchant_location extends MX_Controller {
                 }
                 var_dump($data);
                 echo "<br/>";
+=======
+                if(!empty($IP_Address)){
+                    $bucket_name_ip .= $bucket_name."(".$IP_Address.")";
+                }
+
+                $data = array();
+                if(!empty($bucket_name)){
+                    $data['bucket_name'] = str_replace('  ', '', $bucket_name);
+                    $data['bucket_name'] = str_replace(' ', '', $bucket_name);
+                }
+                
+                if(!empty($bucket_name_ip)){
+                    $data['bucket_name_ip'] = str_replace('  ', '', $bucket_name_ip);
+                    $data['bucket_name_ip'] = str_replace(' ', '', $bucket_name_ip);
+                }
+                
+>>>>>>> 6a446e27c45886319c946fe6ca434f04ac501454
                 if(count($data) > 0){
                     $this->db->where("merchant_location_id", $merchant_location_id);
                     $this->db->update($table, $data);
@@ -144,11 +172,15 @@ class Merchant_location extends MX_Controller {
                 $data_throughput_id = $res->data_throughput_id;
                 $Bucket_Name = $res->Bucket_Name;
                 $data = array();
+<<<<<<< HEAD
                 $bucket = $generated_ip_address = '';
                 $bucket_name_array = explode('(', $Bucket_Name);
                 if(count($bucket_name_array) == 2){
                     $generated_ip_address = str_replace(')', '', $bucket_name_array[1]);
                 }
+=======
+                $bucket = '';
+>>>>>>> 6a446e27c45886319c946fe6ca434f04ac501454
                 
                 //check if throughput exists in location
                 if($merchant_locations->num_rows() > 0){
@@ -156,7 +188,10 @@ class Merchant_location extends MX_Controller {
                         $merchant_location_id = $row->merchant_location_id;
                         $Bucket_Name_location = $row->Bucket_Name;
                         $bucket_name_ip = $row->bucket_name_ip;
+<<<<<<< HEAD
                         $IP_Address = $row->IP_Address;
+=======
+>>>>>>> 6a446e27c45886319c946fe6ca434f04ac501454
                         // echo $Bucket_Name." - ".$Bucket_Name_location."</br>";
                         if($Bucket_Name == $Bucket_Name_location){
                             $bucket = $Bucket_Name_location;
@@ -167,6 +202,7 @@ class Merchant_location extends MX_Controller {
                             $bucket = $bucket_name_ip;
                             break;
                         }
+<<<<<<< HEAD
 
                         if(empty($bucket) && !empty($generated_ip_address)){
                             if($generated_ip_address == $IP_Address){
@@ -174,6 +210,8 @@ class Merchant_location extends MX_Controller {
                                 break;
                             }
                         }
+=======
+>>>>>>> 6a446e27c45886319c946fe6ca434f04ac501454
                     }
                 }
                 echo $Bucket_Name." - ".$bucket."<br/>";
