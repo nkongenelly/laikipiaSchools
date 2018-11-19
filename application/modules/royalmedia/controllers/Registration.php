@@ -187,6 +187,7 @@ class Registration extends MX_Controller
                 $row = $json_object[0];
                 $item = $row->item;
                 $location = $row->location;
+                $location = substr($location, 0, strpos($location, ', Kenya'));
                 
                 $this->db->select('items.*, users.name, users.phone_number');
                 $this->db->from('items, users');
