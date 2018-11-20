@@ -241,7 +241,6 @@ class Registration extends MX_Controller
                     $this->db->order_by("time_modified", "DESC");
                     $this->db->where("items.location LIKE '%" . $location . "%' OR items.user_id = users.user_id");
                     $items = $this->db->get();
-                    echo json_encode($items->result());
                     $response["result"] = "true";
                     $response["message"] = $items->result();
                 }
