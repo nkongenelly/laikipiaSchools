@@ -47,10 +47,18 @@ class Telesales extends MX_Controller {
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
 	function get_customers(){
-        $this->db->select('*');
-        $this->db->from('customers');
-        $this->db->where('username',+254707972693);
-        $query=$this->db->get();
-        echo "works!";
+
+		$json_string = file_get_contents("php://input");
+        $json_object = json_decode($json_string);
+		$response = array();
+		var_dump($response);
+		
+		$username = '';
+		$this->db->select('*');
+		$this->db->from('customers');
+		$this->db->where('username', "$username");
+		$customers = $this->db->get();
+
+		echo json_encode($customers->result());
     }
 }
