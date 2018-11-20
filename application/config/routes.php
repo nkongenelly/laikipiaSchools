@@ -91,4 +91,4 @@ $route['laikipiaschools/schools'] = "laikipiaschools/fetch/getschools";
 /**
  * Telesales routes
  */
-$route['telesales/get_customers'] = "telesales/Telesales/get_customers";
+$route['telesales/customers'] = "telesales/telesales/get_customers";
