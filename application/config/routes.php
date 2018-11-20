@@ -86,3 +86,9 @@ $route['laikipiaschools/save'] = "laikipiaschools/save/savetodb";
 $route['laikipiaschools/home'] = "laikipiaschools/pages/home";
 // $route['default_controller'] = 'pages/view';
 // $route['(:any)'] = 'pages/view/$1';
+
+
+/**
+ * Telesales routes
+ */
+$route['telesales/customers'] = "telesales/telesales/get_customers";
