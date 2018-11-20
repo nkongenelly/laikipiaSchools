@@ -193,17 +193,14 @@ class Registration extends MX_Controller
                 if (strpos($location, ', Kenya') != false) {
                     $location = substr($location, 0, strpos($location, ', Kenya'));
                 }
-
                 //Remove ', Road' from location
                 if (strpos($location, ', Road') != false) {
                     $location = substr($location, 0, strpos($location, ', Road'));
                 }
-
                 //Remove ' Road' from location
                 if (strpos($location, ' Road') != false) {
                     $location = substr($location, 0, strpos($location, ' Road'));
                 }
-
                 //Remove 'Road' from location
                 if (strpos($location, 'Road') != false) {
                     $location = substr($location, 0, strpos($location, 'Road'));
@@ -214,7 +211,7 @@ class Registration extends MX_Controller
                     $this->db->from('items, users');
                     $this->db->order_by("category", "ASC");
                     $this->db->order_by("time_modified", "DESC");
-                    $this->db->where("items.item = '" . $item . "' AND items.location LIKE '%" . $location . "%' AND items.category = '" . $category . "' OR items.user_id = users.user_id");
+                    $this->db->where("items.item = '" . $item . "' AND items.location LIKE '%" . $location . "%' AND items.category = '" . $category . "' AND items.user_id = users.user_id");
                     $items = $this->db->get();
     
                     $response["result"] = "true";
@@ -227,7 +224,7 @@ class Registration extends MX_Controller
                     $this->db->from('items, users');
                     $this->db->order_by("category", "ASC");
                     $this->db->order_by("time_modified", "DESC");
-                    $this->db->where("items.category = '" . $category . "' AND items.location LIKE '%" . $location . "%' OR items.user_id = users.user_id");
+                    $this->db->where("items.category = '" . $category . "' AND items.location LIKE '%" . $location . "%' AND items.user_id = users.user_id");
                     $items = $this->db->get();
     
                     $response["result"] = "true";
@@ -239,7 +236,7 @@ class Registration extends MX_Controller
                     $this->db->from('items, users');
                     $this->db->order_by("category", "ASC");
                     $this->db->order_by("time_modified", "DESC");
-                    $this->db->where("items.location LIKE '%" . $location . "%' OR items.user_id = users.user_id");
+                    $this->db->where("items.location LIKE '%" . $location . "%' AND items.user_id = users.user_id");
                     $items = $this->db->get();
                     $response["result"] = "true";
                     $response["message"] = $items->result();
