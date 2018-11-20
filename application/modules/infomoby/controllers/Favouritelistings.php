@@ -122,7 +122,7 @@ class Favouritelistings extends MX_Controller
             generateAccessToken();
         }
     }
-    function generateAccessToken()
+    public function generateAccessToken()
     {
         echo "hello world";
         // to generate an access token you need refresh token, applicationid, applicationsecret
