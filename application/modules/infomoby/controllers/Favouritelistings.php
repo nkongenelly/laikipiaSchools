@@ -52,14 +52,9 @@ class Favouritelistings extends MX_Controller
     public function favorite_listings()
     {
         $company = array();
-<<<<<<< HEAD
-        $card = "";
         $count = 0;
         $url = "http://infomoby-api.azurewebsites.net/index.php/ke/search_redesign/nearmeredesign/8.957046/38.763025/10/0/10";
         // $url = "https://infomoby-api.azurewebsites.net/index.php/ke/search_redesign/getfavouriteresults/user_id/-1.28333/36.81667/0/300";
-=======
-        $url = "https://infomoby-api.azurewebsites.net/index.php/ke/search_redesign/getfavouriteresults/user_id/-1.28333/36.81667/0/300";
->>>>>>> 6a446e27c45886319c946fe6ca434f04ac501454
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -76,7 +71,6 @@ class Favouritelistings extends MX_Controller
         // echo $result;
         // echo "Serena Hotel";
         // $result2 = preg_replace('/\s+/', '', $result);
-<<<<<<< HEAD
         // $result = str_replace('&quot;', '"', $result);
         $json_object = json_decode($result);
         $error = json_last_error();
@@ -108,20 +102,6 @@ class Favouritelistings extends MX_Controller
         //     echo "</tr>";
         // }
         // echo "</table>";
-=======
-        $result = str_replace('&quot;', '"', $result);
-        $json_object = json_decode($result);
-        $error = json_last_error();
-        var_dump($json_object);
-        // $companies = $json_object->companies;
-        // var_dump($companies);
-        // for ($i = 0; $i < count($companies); $i++) {
-        //     // $comp = $companies[0]->company_name;
-        //     array_push($company, $companies[$i]->company_name);
-        //     var_dump($company);
-
-        // }
->>>>>>> 6a446e27c45886319c946fe6ca434f04ac501454
 
     }
 
