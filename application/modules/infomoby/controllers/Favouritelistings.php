@@ -124,6 +124,7 @@ class Favouritelistings extends MX_Controller
     }
     public function generateAccessToken()
     {
+        echo "hello world";
         // to generate an access token you need refresh token, applicationid, applicationsecret
         $applicationId = "3b740b9e-3b64-4edc-bbf5-141064003042";
         $applicationSecret = "DN55O331CO";
