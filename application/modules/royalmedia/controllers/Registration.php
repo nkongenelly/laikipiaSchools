@@ -84,6 +84,9 @@ class Registration extends MX_Controller
                 foreach ($json_object as $row) {
                     $response_time = date("Y-m-d H:i:s");
                     $userId = $row->userId;
+                    
+                    $lat = (json_decode($row->body, true))['answer10']['lt'];
+                    $lng = (json_decode($row->body, true))['answer10']['lg'];
                     $dataItem = array(
                         "time_modified" => $response_time,
                         "category" => $row->category,
@@ -93,6 +96,8 @@ class Registration extends MX_Controller
                         "price" => $row->price,
                         "user_id" => $userId,
                         "image" => $row->image,
+                        "lat" => $lat,
+                        "lng" => $lng,
                         "location" => $row->location,
                         "category_id" => $this->get_category_id($row->category),
                     );
