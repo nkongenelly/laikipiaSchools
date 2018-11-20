@@ -104,27 +104,26 @@ class Favouritelistings extends MX_Controller
         // echo "</table>";
 
     }
-    // function send_actioncard()
-    // {
-    //     $json_str = file_get_contents('php://input');
-    //     $json_obj = json_decode($json_str, true);
-    //     var_dump($json_obj);
-    //     $accessToken = generateAccessToken();
-    //     var_dump($accessToken);
-    //     if ((is_array($json_obj)) && (count($json_obj) > 0)) {
-    //         // var_dump( $json_obj[0]);die();
-    //         $membermobilenumber = $json_obj[0]["membermobilenumber"];
-    //         // $senderName = $json_obj[0]["sender"];
-    //         // $warning = stripos($message, "bomb");
-
-    //         $group_id = "34043c6a-30f2-490f-ac98-6a2be2927210";
-
-    //         $url = "https://kms.kaiza.la/v1/groups/" . $group_id . "/actions";
-    //         echo "whaat";
-    //     }
-
-    // }
     function send_actioncard()
+    {
+        $json_str = file_get_contents('php://input');
+        $json_obj = json_decode($json_str, true);
+        var_dump($json_obj);
+        if ((is_array($json_obj)) && (count($json_obj) > 0)) {
+            // var_dump( $json_obj[0]);die();
+            $membermobilenumber = $json_obj[0]["membermobilenumber"];
+            // $senderName = $json_obj[0]["sender"];
+            // $warning = stripos($message, "bomb");
+
+            $group_id = "34043c6a-30f2-490f-ac98-6a2be2927210";
+
+            $url = "https://kms.kaiza.la/v1/groups/" . $group_id . "/actions";
+            echo "whaat";
+            var_dump(generateAccessToken());
+        }
+
+    }
+    function generateAccessToken()
     {
         echo "hello world";
         // to generate an access token you need refresh token, applicationid, applicationsecret
