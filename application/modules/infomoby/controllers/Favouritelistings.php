@@ -104,6 +104,10 @@ class Favouritelistings extends MX_Controller
         // echo "</table>";
 
     }
+    public function send_actioncard()
+    {
+
+    }
 
 
 }
