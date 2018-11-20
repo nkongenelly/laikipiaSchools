@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Incidents extends MX_Controller {
+class Telesales extends MX_Controller {
 	/**
 	 * Constructor for this controller.
 	 *
@@ -51,6 +51,6 @@ class Incidents extends MX_Controller {
         $this->db->from('customers');
         $this->db->where('username',+254707972693);
         $query=$this->db->get();
-        echo $query;
+        echo "works!";
     }
 }
