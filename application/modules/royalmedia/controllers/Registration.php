@@ -209,7 +209,7 @@ class Registration extends MX_Controller
                     $location = substr($location, 0, strpos($location, 'Road'));
                 }
                 //If category, item and location have been provided
-                if($location && $item && $category){
+                if(($item != "" || $item != NULL) && ($category != "" || $category != NULL)){
                     $this->db->select('items.*, users.name, users.phone_number');
                     $this->db->from('items, users');
                     $this->db->order_by("category", "ASC");
@@ -222,7 +222,7 @@ class Registration extends MX_Controller
 
                 }
                 //If only category and location have been provided
-                else if($location && $category){
+                else if($category != "" || $category != NULL){
                     $this->db->select('items.*, users.name, users.phone_number');
                     $this->db->from('items, users');
                     $this->db->order_by("category", "ASC");
@@ -234,7 +234,7 @@ class Registration extends MX_Controller
                     $response["message"] = $items->result();
                 }
                 //If only location has been provided
-                else if($location){
+                else if(($item == "" || $item == NULL) && ($category == "" || $category == NULL)){
                     $this->db->select('items.*, users.name, users.phone_number');
                     $this->db->from('items, users');
                     $this->db->order_by("category", "ASC");
