@@ -91,4 +91,4 @@ $route['laikipiaschools/home'] = "laikipiaschools/pages/home";
 /**
  * Telesales routes
  */
-$route['telesales/customers'] = "telesales/telesales/get_customers";
+$route['telesales/get_customers'] = "telesales/Telesales/get_customers";
