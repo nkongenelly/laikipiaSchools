@@ -208,6 +208,7 @@ class Registration extends MX_Controller
                 if (strpos($location, 'Road') != false) {
                     $location = substr($location, 0, strpos($location, 'Road'));
                 }
+                var_dump($location);
                 //If category, item and location have been provided
                 if($location && $item && $category){
                     $this->db->select('items.*, users.name, users.phone_number');
