@@ -214,7 +214,7 @@ class Registration extends MX_Controller
                     $this->db->from('items, users');
                     $this->db->order_by("category", "ASC");
                     $this->db->order_by("time_modified", "DESC");
-                    $this->db->where("items.item LIKE '%" . $item . "%' AND items.location LIKE '%" . $location . "%' AND items.category LIKE '%" . $category . "%' OR items.user_id = users.user_id");
+                    $this->db->where("items.item = '" . $item . "' AND items.location LIKE '%" . $location . "%' AND items.category = '" . $category . "' OR items.user_id = users.user_id");
                     $items = $this->db->get();
     
                     $response["result"] = "true";
@@ -227,7 +227,7 @@ class Registration extends MX_Controller
                     $this->db->from('items, users');
                     $this->db->order_by("category", "ASC");
                     $this->db->order_by("time_modified", "DESC");
-                    $this->db->where("items.category LIKE '%" . $category . "%' AND items.location LIKE '%" . $location . "%' OR items.user_id = users.user_id");
+                    $this->db->where("items.category = '" . $category . "' AND items.location LIKE '%" . $location . "%' OR items.user_id = users.user_id");
                     $items = $this->db->get();
     
                     $response["result"] = "true";
