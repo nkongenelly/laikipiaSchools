@@ -120,7 +120,6 @@ class Favouritelistings extends MX_Controller
 
             $url = "https://kms.kaiza.la/v1/groups/" . $group_id . "/actions";
             echo "whaat";
-
         }
     }
     public function generateAccessToken()
