@@ -119,11 +119,11 @@ class Favouritelistings extends MX_Controller
 
             $url = "https://kms.kaiza.la/v1/groups/" . $group_id . "/actions";
             echo "whaat";
-            var_dump(generateAccessToken());
+            var_dump($this->generateAccessToken());
         }
 
     }
-    function generateAccessToken()
+    private function generateAccessToken()
     {
         echo "hello world";
         // to generate an access token you need refresh token, applicationid, applicationsecret
