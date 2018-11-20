@@ -208,7 +208,6 @@ class Registration extends MX_Controller
                 if (strpos($location, 'Road') != false) {
                     $location = substr($location, 0, strpos($location, 'Road'));
                 }
-                var_dump($location);
                 //If category, item and location have been provided
                 if($location && $item && $category){
                     $this->db->select('items.*, users.name, users.phone_number');
@@ -242,7 +241,7 @@ class Registration extends MX_Controller
                     $this->db->order_by("time_modified", "DESC");
                     $this->db->where("items.location LIKE '%" . $location . "%' OR items.user_id = users.user_id");
                     $items = $this->db->get();
-    
+                    echo json_encode($items->result());
                     $response["result"] = "true";
                     $response["message"] = $items->result();
                 }
