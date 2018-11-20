@@ -58,6 +58,7 @@ $route['translate_uri_dashes'] = false;
  */
 $route['infomoby/register-business'] = "infomoby/registration/register_business";
 $route['infomoby/getfavlistings'] = "infomoby/favouritelistings/favorite_listings";
+$route['infomoby/sendactioncard'] = "infomoby/favouritelistings/send_actioncard";
 
 /**
  * Royal Media Service routes
