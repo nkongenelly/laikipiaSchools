@@ -109,6 +109,7 @@ class Favouritelistings extends MX_Controller
         $json_str = file_get_contents('php://input');
         $json_obj = json_decode($json_str, true);
         var_dump($json_obj);
+        generateAccessToken();
         if ((is_array($json_obj)) && (count($json_obj) > 0)) {
             // var_dump( $json_obj[0]);die();
             $membermobilenumber = $json_obj[0]["membermobilenumber"];
@@ -119,7 +120,7 @@ class Favouritelistings extends MX_Controller
 
             $url = "https://kms.kaiza.la/v1/groups/" . $group_id . "/actions";
             echo "whaat";
-            generateAccessToken();
+
         }
     }
     public function generateAccessToken()
