@@ -51,6 +51,6 @@ class Telesales extends MX_Controller {
         $this->db->from('customers');
         $this->db->where('username',+254707972693);
         $query=$this->db->get();
-        echo $query;
+        echo "works!";
     }
 }
