@@ -52,7 +52,9 @@ class Favouritelistings extends MX_Controller
     public function favorite_listings()
     {
         $company = array();
-        $url = "https://infomoby-api.azurewebsites.net/index.php/ke/search_redesign/getfavouriteresults/user_id/-1.28333/36.81667/0/300";
+        $count = 0;
+        $url = "http://infomoby-api.azurewebsites.net/index.php/ke/search_redesign/nearmeredesign/8.957046/38.763025/10/0/10";
+        // $url = "https://infomoby-api.azurewebsites.net/index.php/ke/search_redesign/getfavouriteresults/user_id/-1.28333/36.81667/0/300";
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -69,19 +71,78 @@ class Favouritelistings extends MX_Controller
         // echo $result;
         // echo "Serena Hotel";
         // $result2 = preg_replace('/\s+/', '', $result);
-        $result = str_replace('&quot;', '"', $result);
+        // $result = str_replace('&quot;', '"', $result);
         $json_object = json_decode($result);
         $error = json_last_error();
-        var_dump($json_object);
-        // $companies = $json_object->companies;
+        // var_dump($json_object);
+        $companies = $json_object->companies;
+        $allCompanies = [];
         // var_dump($companies);
-        // for ($i = 0; $i < count($companies); $i++) {
-        //     // $comp = $companies[0]->company_name;
-        //     array_push($company, $companies[$i]->company_name);
-        //     var_dump($company);
+        for ($i = 0; $i < count($companies); $i++) {
+            // $comp = $companies[0]->company_name;
+            $companyname = $companies[$i]->company_name_en;
+            $companyaddress = $companies[$i]->city_name_en;
+            $company['companyName'] = $companyname;
+            $company['companyAddress'] = $companyaddress;
 
+            array_push($allCompanies, $company);
+        }
+        echo (json_encode($allCompanies));
+        // //list the company name and contact
+        // echo "<table border='2px' border-color='blue'>";
+        // echo "<tr>";
+        // echo "<th>Count</th><th>Companies Near Me</th>";
+        // echo "</tr>";
+        // for ($i = 0; $i < count($company_name); $i++) {
+        //     $count++;
+        //     $card = $company_name[$i];
+        //     echo "<tr>";
+        //     echo "<td>" . $count . "</td>";
+        //     echo "<td>" . $card . "</td>";
+        //     echo "</tr>";
         // }
+        // echo "</table>";
 
+    }
+    function send_actioncard()
+    {
+        $json_str = file_get_contents('php://input');
+        $json_obj = json_decode($json_str, true);
+        var_dump($json_obj);
+        if ((is_array($json_obj)) && (count($json_obj) > 0)) {
+            // var_dump( $json_obj[0]);die();
+            $membermobilenumber = $json_obj[0]["membermobilenumber"];
+            // $senderName = $json_obj[0]["sender"];
+            // $warning = stripos($message, "bomb");
+
+            $group_id = "34043c6a-30f2-490f-ac98-6a2be2927210";
+
+            $url = "https://kms.kaiza.la/v1/groups/" . $group_id . "/actions";
+            echo "whaat";
+        }
+
+    }
+    function generateAccessToken()
+    {
+        echo "hello world";
+        // to generate an access token you need refresh token, applicationid, applicationsecret
+        $applicationId = "3b740b9e-3b64-4edc-bbf5-141064003042";
+        $applicationSecret = "DN55O331CO";
+        $refreshToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cm46bWljcm9zb2Z0OmNyZWRlbnRpYWxzIjoie1wicGhvbmVOdW1iZXJcIjpcIisyNTQ3NTMwMjgwOThcIixcImNJZFwiOlwiXCIsXCJ0ZXN0U2VuZGVyXCI6XCJmYWxzZVwiLFwiYXBwTmFtZVwiOlwiY29tLm1pY3Jvc29mdC5tb2JpbGUua2FpemFsYWFwaVwiLFwiYXBwbGljYXRpb25JZFwiOlwiM2I3NDBiOWUtM2I2NC00ZWRjLWJiZjUtMTQxMDY0MDAzMDQyXCIsXCJwZXJtaXNzaW9uc1wiOlwiOC40XCIsXCJhcHBsaWNhdGlvblR5cGVcIjotMSxcImRhdGFcIjpcIntcXFwiQXBwTmFtZVxcXCI6XFxcIlRoZXVyaSBDb25uZWN0b3JcXFwifVwifSIsInVpZCI6Ik1vYmlsZUFwcHNTZXJ2aWNlOmNiZDRjOTYxLWY2YTEtNDZmMS1iNWZhLTZmZjYyOGZiZTRlYyIsInZlciI6IjIiLCJuYmYiOjE1NDE0ODYxNzUsImV4cCI6MTU3MzAyMjE3NSwiaWF0IjoxNTQxNDg2MTc1LCJpc3MiOiJ1cm46bWljcm9zb2Z0OndpbmRvd3MtYXp1cmU6enVtbyIsImF1ZCI6InVybjptaWNyb3NvZnQ6d2luZG93cy1henVyZTp6dW1vIn0.LZLve3O4C_85pdsLJ7Wuhr9bigYIAeQkgZrUASaSNoo";
+        $curl_url = "https://kms.kaiza.la/v1/accessToken";
+        $ch = curl_init($curl_url);
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'applicationId: ' . $applicationId,
+            'applicationSecret: ' . $applicationSecret,
+            'refreshToken: ' . $refreshToken,
+            'Content-Type: application/json',
+        ));
+        $response = curl_exec($ch);
+        curl_close($ch);
+        $responseobj = json_decode($response);
+        // var_dump($responseobj);
     }
 
 

@@ -58,6 +58,7 @@ $route['translate_uri_dashes'] = false;
  */
 $route['infomoby/register-business'] = "infomoby/registration/register_business";
 $route['infomoby/getfavlistings'] = "infomoby/favouritelistings/favorite_listings";
+$route['infomoby/sendactioncard'] = "infomoby/favouritelistings/send_actioncard";
 
 /**
  * Royal Media Service routes
@@ -65,6 +66,10 @@ $route['infomoby/getfavlistings'] = "infomoby/favouritelistings/favorite_listing
 $route['royalmedia/register-service'] = "royalmedia/registration/register_services";
 $route['royalmedia/search'] = "royalmedia/registration/services_search";
 $route['royalmedia/items'] = "royalmedia/registration/items_search";
+$route['royalmedia/categories'] = "royalmedia/registration/categories";
+$route['royalmedia/category-items'] = "royalmedia/registration/category_items";
+$route['royalmedia/purchase-items'] = "royalmedia/registration/purchase_items";
+$route['royalmedia/units'] = "royalmedia/registration/units";
 
 /**
  * Mawingu routes
@@ -81,3 +86,9 @@ $route['laikipiaschools/save'] = "laikipiaschools/save/savetodb";
 $route['laikipiaschools/schools'] = "laikipiaschools/fetch/getschools";
 // $route['default_controller'] = 'pages/view';
 // $route['(:any)'] = 'pages/view/$1';
+
+
+/**
+ * Telesales routes
+ */
+$route['telesales/get_customers'] = "telesales/Telesales/get_customers";
