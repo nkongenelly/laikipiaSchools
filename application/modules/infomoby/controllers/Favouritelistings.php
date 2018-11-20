@@ -118,29 +118,29 @@ class Favouritelistings extends MX_Controller
             $group_id = "34043c6a-30f2-490f-ac98-6a2be2927210";
 
             $url = "https://kms.kaiza.la/v1/groups/" . $group_id . "/actions";
-
-            function generateAccessToken()
-            {
-                // to generate an access token you need refresh token, applicationid, applicationsecret
-                $applicationId = "3b740b9e-3b64-4edc-bbf5-141064003042";
-                $applicationSecret = "DN55O331CO";
-                $refreshToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cm46bWljcm9zb2Z0OmNyZWRlbnRpYWxzIjoie1wicGhvbmVOdW1iZXJcIjpcIisyNTQ3NTMwMjgwOThcIixcImNJZFwiOlwiXCIsXCJ0ZXN0U2VuZGVyXCI6XCJmYWxzZVwiLFwiYXBwTmFtZVwiOlwiY29tLm1pY3Jvc29mdC5tb2JpbGUua2FpemFsYWFwaVwiLFwiYXBwbGljYXRpb25JZFwiOlwiM2I3NDBiOWUtM2I2NC00ZWRjLWJiZjUtMTQxMDY0MDAzMDQyXCIsXCJwZXJtaXNzaW9uc1wiOlwiOC40XCIsXCJhcHBsaWNhdGlvblR5cGVcIjotMSxcImRhdGFcIjpcIntcXFwiQXBwTmFtZVxcXCI6XFxcIlRoZXVyaSBDb25uZWN0b3JcXFwifVwifSIsInVpZCI6Ik1vYmlsZUFwcHNTZXJ2aWNlOmNiZDRjOTYxLWY2YTEtNDZmMS1iNWZhLTZmZjYyOGZiZTRlYyIsInZlciI6IjIiLCJuYmYiOjE1NDE0ODYxNzUsImV4cCI6MTU3MzAyMjE3NSwiaWF0IjoxNTQxNDg2MTc1LCJpc3MiOiJ1cm46bWljcm9zb2Z0OndpbmRvd3MtYXp1cmU6enVtbyIsImF1ZCI6InVybjptaWNyb3NvZnQ6d2luZG93cy1henVyZTp6dW1vIn0.LZLve3O4C_85pdsLJ7Wuhr9bigYIAeQkgZrUASaSNoo";
-                $curl_url = "https://kms.kaiza.la/v1/accessToken";
-                $ch = curl_init($curl_url);
-
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                    'applicationId: ' . $applicationId,
-                    'applicationSecret: ' . $applicationSecret,
-                    'refreshToken: ' . $refreshToken,
-                    'Content-Type: application/json',
-                ));
-                $response = curl_exec($ch);
-                curl_close($ch);
-                $responseobj = json_decode($response);
-                return $responseobj;
-            }
+            generateAccessToken();
         }
+    }
+    function generateAccessToken()
+    {
+        // to generate an access token you need refresh token, applicationid, applicationsecret
+        $applicationId = "3b740b9e-3b64-4edc-bbf5-141064003042";
+        $applicationSecret = "DN55O331CO";
+        $refreshToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cm46bWljcm9zb2Z0OmNyZWRlbnRpYWxzIjoie1wicGhvbmVOdW1iZXJcIjpcIisyNTQ3NTMwMjgwOThcIixcImNJZFwiOlwiXCIsXCJ0ZXN0U2VuZGVyXCI6XCJmYWxzZVwiLFwiYXBwTmFtZVwiOlwiY29tLm1pY3Jvc29mdC5tb2JpbGUua2FpemFsYWFwaVwiLFwiYXBwbGljYXRpb25JZFwiOlwiM2I3NDBiOWUtM2I2NC00ZWRjLWJiZjUtMTQxMDY0MDAzMDQyXCIsXCJwZXJtaXNzaW9uc1wiOlwiOC40XCIsXCJhcHBsaWNhdGlvblR5cGVcIjotMSxcImRhdGFcIjpcIntcXFwiQXBwTmFtZVxcXCI6XFxcIlRoZXVyaSBDb25uZWN0b3JcXFwifVwifSIsInVpZCI6Ik1vYmlsZUFwcHNTZXJ2aWNlOmNiZDRjOTYxLWY2YTEtNDZmMS1iNWZhLTZmZjYyOGZiZTRlYyIsInZlciI6IjIiLCJuYmYiOjE1NDE0ODYxNzUsImV4cCI6MTU3MzAyMjE3NSwiaWF0IjoxNTQxNDg2MTc1LCJpc3MiOiJ1cm46bWljcm9zb2Z0OndpbmRvd3MtYXp1cmU6enVtbyIsImF1ZCI6InVybjptaWNyb3NvZnQ6d2luZG93cy1henVyZTp6dW1vIn0.LZLve3O4C_85pdsLJ7Wuhr9bigYIAeQkgZrUASaSNoo";
+        $curl_url = "https://kms.kaiza.la/v1/accessToken";
+        $ch = curl_init($curl_url);
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'applicationId: ' . $applicationId,
+            'applicationSecret: ' . $applicationSecret,
+            'refreshToken: ' . $refreshToken,
+            'Content-Type: application/json',
+        ));
+        $response = curl_exec($ch);
+        curl_close($ch);
+        $responseobj = json_decode($response);
+        return $responseobj;
     }
 
 
