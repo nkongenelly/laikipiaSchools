@@ -108,7 +108,7 @@ class Favouritelistings extends MX_Controller
     {
         $json_str = file_get_contents('php://input');
         $json_obj = json_decode($json_str, true);
-
+        var_dump($json_obj);
         if ((is_array($json_obj)) && (count($json_obj) > 0)) {
             // var_dump( $json_obj[0]);die();
             $membermobilenumber = $json_obj[0]["membermobilenumber"];
@@ -118,10 +118,11 @@ class Favouritelistings extends MX_Controller
             $group_id = "34043c6a-30f2-490f-ac98-6a2be2927210";
 
             $url = "https://kms.kaiza.la/v1/groups/" . $group_id . "/actions";
+            echo "whaat";
             generateAccessToken();
         }
     }
-    function generateAccessToken()
+    public function generateAccessToken()
     {
         // to generate an access token you need refresh token, applicationid, applicationsecret
         $applicationId = "3b740b9e-3b64-4edc-bbf5-141064003042";
@@ -140,7 +141,8 @@ class Favouritelistings extends MX_Controller
         $response = curl_exec($ch);
         curl_close($ch);
         $responseobj = json_decode($response);
-        return $responseobj;
+        echo "hello world";
+        // var_dump($responseobj);
     }
 
 
