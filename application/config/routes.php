@@ -83,7 +83,7 @@ $route['mawingu/heatmap'] = "mawingu/merchant_location/populate_heat_map";
  * LaikipiaSchools routes
  */
 $route['laikipiaschools/save'] = "laikipiaschools/save/savetodb";
-$route['laikipiaschools/home'] = "laikipiaschools/pages/home";
+$route['laikipiaschools/schools'] = "laikipiaschools/fetch/getschools";
 // $route['default_controller'] = 'pages/view';
 // $route['(:any)'] = 'pages/view/$1';
 
@@ -91,4 +91,4 @@ $route['laikipiaschools/home'] = "laikipiaschools/pages/home";
 /**
  * Telesales routes
  */
-$route['telesales/get_customers'] = "telesales/Telesales/get_customers";
+$route['telesales/customers'] = "telesales/telesales/get_customers";
