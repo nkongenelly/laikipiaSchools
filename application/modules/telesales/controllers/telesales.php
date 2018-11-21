@@ -52,12 +52,6 @@ class Telesales extends MX_Controller {
         $json_object = json_decode($json_string);
 		$response = array();
 		
-		// $username ="0707972693";
-		// if(strpos($username, "254") !== false){
-        //     $username = "+".$username;
-        // }else{
-        //     $username = $username;
-		// }
 		if (is_array($json_object)) {
             if (count($json_object) > 0) {
                 // foreach ($json_object as $row) {
