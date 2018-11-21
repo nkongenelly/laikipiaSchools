@@ -85,8 +85,10 @@ class Registration extends MX_Controller
                     $response_time = date("Y-m-d H:i:s");
                     $userId = $row->userId;
                     
-                    $lat = (json_decode($row->body, true))['answer10']['lt'];
-                    $lng = (json_decode($row->body, true))['answer10']['lg'];
+                    $lat_array = json_decode($row->body, true);
+                    $lat = $lat_array['answer10']['lt'];
+                    $lng_array = json_decode($row->body, true);
+                    $lng = $lng_array['answer10']['lg'];
                     $dataItem = array(
                         "time_modified" => $response_time,
                         "category" => $row->category,
