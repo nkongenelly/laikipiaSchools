@@ -25,7 +25,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 // $config['base_url'] = 'https://nanyukiaf.azurewebsites.net/';
 // $config['base_url'] = 'http://localhost/nanyukiaf/';
-$config['base_url'] = 'http://omnis.co.ke/nanyukiaf/';
+// $config['base_url'] = 'http://omnis.co.ke/nanyukiaf/';
+$config['base_url'] = 'https://nanyukiappfactory.azurewebsites.net';
 
 /*
 |--------------------------------------------------------------------------
