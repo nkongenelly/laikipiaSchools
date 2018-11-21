@@ -64,12 +64,13 @@ $route['infomoby/sendactioncard'] = "infomoby/favouritelistings/send_actioncard"
  * Royal Media Service routes
  */
 $route['royalmedia/register-service'] = "royalmedia/registration/register_services";
-$route['royalmedia/search'] = "royalmedia/registration/services_search";
-$route['royalmedia/items'] = "royalmedia/registration/items_search";
+$route['royalmedia/search'] = "royalmedia/allitems/services_search";
+$route['royalmedia/items'] = "royalmedia/allitems/items_search";
 $route['royalmedia/categories'] = "royalmedia/categories/categories";
-$route['royalmedia/category-items'] = "royalmedia/registration/category_items";
-$route['royalmedia/purchase-items'] = "royalmedia/registration/purchase_items";
-$route['royalmedia/units'] = "royalmedia/registration/units";
+$route['royalmedia/category-items'] = "royalmedia/categories/category_items";
+$route['royalmedia/purchase-items'] = "royalmedia/categories/purchase_items";
+$route['royalmedia/units'] = "royalmedia/categories/units";
+$route['royalmedia/allitems'] = "royalmedia/categories/items";
 
 /**
  * Mawingu routes
@@ -86,7 +87,6 @@ $route['laikipiaschools/save'] = "laikipiaschools/save/savetodb";
 $route['laikipiaschools/schools'] = "laikipiaschools/fetch/getschools";
 // $route['default_controller'] = 'pages/view';
 // $route['(:any)'] = 'pages/view/$1';
-
 
 /**
  * Telesales routes
